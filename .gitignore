@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Generated data files (large, regeneratable)
+feature_lab/store/feature_store.jsonl
+retrieval_lab/cache/
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large dataset files — never commit to git
+*.jsonl
+!feature_lab/store/.gitkeep
+challenge.zip
