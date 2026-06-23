@@ -1,0 +1,276 @@
+{
+  "total_candidates_scanned": 100000,
+  "total_unique_skills": 133,
+  "claimed_fingerprint_skills": [
+    "Content Matching",
+    "Document Processing",
+    "Indexing Algorithms",
+    "Information Retrieval Systems",
+    "Model Adaptation",
+    "Open-source ML libraries",
+    "Ranking Systems",
+    "Search & Discovery",
+    "Search Backend",
+    "Search Infrastructure",
+    "Text Encoders",
+    "Vector Representations",
+    "Workflow Orchestration"
+  ],
+  "fingerprint_skills_found": [
+    "Content Matching",
+    "Document Processing",
+    "Indexing Algorithms",
+    "Information Retrieval Systems",
+    "Model Adaptation",
+    "Open-source ML libraries",
+    "Ranking Systems",
+    "Search & Discovery",
+    "Search Backend",
+    "Search Infrastructure",
+    "Text Encoders",
+    "Vector Representations",
+    "Workflow Orchestration"
+  ],
+  "fingerprint_skills_absent": [],
+  "fp_skill_summary": [
+    {
+      "skill": "Document Processing",
+      "unique_candidates": 1,
+      "candidate_titles": [
+        "Senior Applied Scientist"
+      ]
+    },
+    {
+      "skill": "Indexing Algorithms",
+      "unique_candidates": 3,
+      "candidate_titles": [
+        "Senior Applied Scientist",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Open-source ML libraries",
+      "unique_candidates": 3,
+      "candidate_titles": [
+        "Lead AI Engineer",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Search Infrastructure",
+      "unique_candidates": 3,
+      "candidate_titles": [
+        "Senior Applied Scientist",
+        "Staff Machine Learning Engineer",
+        "Staff Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Workflow Orchestration",
+      "unique_candidates": 3,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior AI Engineer",
+        "Staff Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Content Matching",
+      "unique_candidates": 4,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Model Adaptation",
+      "unique_candidates": 4,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Senior Applied Scientist",
+        "Staff Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Ranking Systems",
+      "unique_candidates": 4,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Lead AI Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Search & Discovery",
+      "unique_candidates": 4,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Vector Representations",
+      "unique_candidates": 4,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior AI Engineer",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Search Backend",
+      "unique_candidates": 5,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Staff Machine Learning Engineer",
+        "Lead AI Engineer",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Text Encoders",
+      "unique_candidates": 5,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Senior Applied Scientist",
+        "Lead AI Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    },
+    {
+      "skill": "Information Retrieval Systems",
+      "unique_candidates": 7,
+      "candidate_titles": [
+        "Senior AI Engineer",
+        "Senior Applied Scientist",
+        "Senior Applied Scientist",
+        "Staff Machine Learning Engineer",
+        "Lead AI Engineer",
+        "Staff Machine Learning Engineer",
+        "Senior Machine Learning Engineer"
+      ]
+    }
+  ],
+  "total_fp_holders": 8,
+  "fp_holder_details": [
+    {
+      "candidate_id": "CAND_0005538",
+      "title": "Senior AI Engineer",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0006567",
+      "title": "Senior AI Engineer",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0061257",
+      "title": "Staff Machine Learning Engineer",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0093193",
+      "title": "Senior Machine Learning Engineer",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0030468",
+      "title": "Senior Applied Scientist",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0037980",
+      "title": "Senior Applied Scientist",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0068351",
+      "title": "Lead AI Engineer",
+      "is_senior_ai_ml": true
+    },
+    {
+      "candidate_id": "CAND_0080766",
+      "title": "Staff Machine Learning Engineer",
+      "is_senior_ai_ml": true
+    }
+  ],
+  "seniority_alignment_rate": 1.0,
+  "senior_ai_ml_count": 8,
+  "discrepancies_vs_claimed": [],
+  "ultra_rare_skill_count": 14,
+  "ultra_rare_skills": [
+    [
+      "Document Processing",
+      1
+    ],
+    [
+      "Natural Language Processing",
+      2
+    ],
+    [
+      "Workflow Orchestration",
+      3
+    ],
+    [
+      "Search Infrastructure",
+      3
+    ],
+    [
+      "Indexing Algorithms",
+      3
+    ],
+    [
+      "Open-source ML libraries",
+      3
+    ],
+    [
+      "Vector Representations",
+      4
+    ],
+    [
+      "Content Matching",
+      4
+    ],
+    [
+      "Model Adaptation",
+      4
+    ],
+    [
+      "Ranking Systems",
+      4
+    ],
+    [
+      "Search & Discovery",
+      4
+    ],
+    [
+      "Search Backend",
+      5
+    ],
+    [
+      "Text Encoders",
+      5
+    ],
+    [
+      "Information Retrieval Systems",
+      7
+    ]
+  ],
+  "freq_band_summary": {
+    "ultra_rare_1_7": 14,
+    "rare_8_50": 0,
+    "moderate_51_1000": 0,
+    "common_1001_plus": 119
+  }
+}
