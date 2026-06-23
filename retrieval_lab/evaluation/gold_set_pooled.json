@@ -1,0 +1,965 @@
+{
+  "metadata": {
+    "description": "Pooled heuristic validation set (BM25 + Dense + Hybrid + MultiVector + SkillGraph)",
+    "scoring_logic": "0: Irrelevant, 1: Plausible (some IR skills), 2: Strong (Senior AI title + 3 IR skills), 3: Excellent (Strong + Pune/Noida location)",
+    "limitations": "Synthetically generated set based on pooling multiple retrieval outputs and scoring them via heuristics to eliminate single-method pooling bias."
+  },
+  "queries": [
+    {
+      "query_id": "q1",
+      "text": "Senior/Staff AI/ML Engineer \u2014 Search & Retrieval. 5-9 years of experience, strong production NLP/IR skills, prefers product-company backgrounds, soft preference for sub-30-day notice periods. Down-weight inactive candidates.",
+      "judgments": {
+        "CAND_0037980": 2,
+        "CAND_0046064": 2,
+        "CAND_0008425": 2,
+        "CAND_0006567": 3,
+        "CAND_0086022": 2,
+        "CAND_0039754": 2,
+        "CAND_0031593": 1,
+        "CAND_0079162": 1,
+        "CAND_0033650": 1,
+        "CAND_0064326": 1,
+        "CAND_0083307": 1,
+        "CAND_0067887": 1,
+        "CAND_0081686": 1,
+        "CAND_0028318": 2,
+        "CAND_0039120": 1,
+        "CAND_0011385": 1,
+        "CAND_0050009": 1,
+        "CAND_0013406": 1,
+        "CAND_0036639": 1,
+        "CAND_0045764": 1,
+        "CAND_0027695": 1,
+        "CAND_0028793": 1,
+        "CAND_0070202": 1,
+        "CAND_0040790": 1,
+        "CAND_0061148": 1,
+        "CAND_0061797": 1,
+        "CAND_0098102": 1,
+        "CAND_0001805": 1,
+        "CAND_0075541": 1,
+        "CAND_0087899": 1,
+        "CAND_0009960": 1,
+        "CAND_0010007": 1,
+        "CAND_0030390": 1,
+        "CAND_0033394": 1,
+        "CAND_0054123": 2,
+        "CAND_0028343": 1,
+        "CAND_0051672": 1,
+        "CAND_0083096": 1,
+        "CAND_0095616": 1,
+        "CAND_0007595": 1,
+        "CAND_0083612": 1,
+        "CAND_0024466": 1,
+        "CAND_0043525": 1,
+        "CAND_0083910": 1,
+        "CAND_0058504": 1,
+        "CAND_0027956": 1,
+        "CAND_0044919": 1,
+        "CAND_0050362": 1,
+        "CAND_0056977": 1,
+        "CAND_0071101": 1,
+        "CAND_0099806": 2,
+        "CAND_0065195": 1,
+        "CAND_0049538": 2,
+        "CAND_0030953": 1,
+        "CAND_0076251": 1,
+        "CAND_0064904": 2,
+        "CAND_0094056": 1,
+        "CAND_0049896": 1,
+        "CAND_0030827": 2,
+        "CAND_0024620": 2,
+        "CAND_0055992": 2,
+        "CAND_0012957": 1,
+        "CAND_0081852": 2,
+        "CAND_0084819": 1,
+        "CAND_0044883": 2,
+        "CAND_0037944": 2,
+        "CAND_0019480": 1,
+        "CAND_0075249": 2,
+        "CAND_0087364": 1,
+        "CAND_0079387": 2,
+        "CAND_0009024": 1,
+        "CAND_0062247": 2,
+        "CAND_0011162": 1,
+        "CAND_0015578": 2,
+        "CAND_0096172": 1,
+        "CAND_0002025": 2,
+        "CAND_0037000": 1,
+        "CAND_0091534": 2,
+        "CAND_0020350": 2,
+        "CAND_0096142": 2,
+        "CAND_0052328": 1,
+        "CAND_0041568": 1,
+        "CAND_0045250": 2,
+        "CAND_0069905": 2,
+        "CAND_0074735": 2,
+        "CAND_0092245": 2,
+        "CAND_0009837": 3,
+        "CAND_0027691": 1,
+        "CAND_0040117": 1,
+        "CAND_0061339": 1,
+        "CAND_0066376": 2,
+        "CAND_0086151": 1,
+        "CAND_0093331": 1,
+        "CAND_0098846": 2,
+        "CAND_0041610": 1,
+        "CAND_0060072": 2,
+        "CAND_0091909": 1,
+        "CAND_0036437": 1,
+        "CAND_0041669": 1,
+        "CAND_0020708": 1,
+        "CAND_0099401": 1,
+        "CAND_0078002": 1,
+        "CAND_0037566": 1,
+        "CAND_0078042": 2,
+        "CAND_0040887": 1,
+        "CAND_0070398": 1,
+        "CAND_0083879": 1,
+        "CAND_0042029": 2,
+        "CAND_0013536": 2,
+        "CAND_0076831": 1,
+        "CAND_0050454": 2,
+        "CAND_0095619": 1,
+        "CAND_0030031": 2,
+        "CAND_0047721": 2,
+        "CAND_0064270": 3,
+        "CAND_0088025": 2,
+        "CAND_0061655": 1,
+        "CAND_0003977": 2,
+        "CAND_0000001": 1,
+        "CAND_0000002": 0,
+        "CAND_0000003": 0,
+        "CAND_0000004": 0,
+        "CAND_0000005": 0,
+        "CAND_0000006": 0,
+        "CAND_0000007": 0,
+        "CAND_0000008": 0,
+        "CAND_0000009": 0,
+        "CAND_0000010": 1,
+        "CAND_0000011": 0,
+        "CAND_0000012": 0,
+        "CAND_0000013": 0,
+        "CAND_0000014": 0,
+        "CAND_0000015": 1,
+        "CAND_0000016": 0,
+        "CAND_0000017": 0,
+        "CAND_0000018": 0,
+        "CAND_0000019": 0,
+        "CAND_0000020": 0,
+        "CAND_0000021": 0,
+        "CAND_0000022": 0,
+        "CAND_0000023": 0,
+        "CAND_0000024": 0,
+        "CAND_0000025": 0,
+        "CAND_0000026": 0,
+        "CAND_0000027": 0,
+        "CAND_0000028": 0,
+        "CAND_0000031": 1,
+        "CAND_0000043": 1,
+        "CAND_0000091": 1,
+        "CAND_0000096": 1,
+        "CAND_0000112": 1,
+        "CAND_0000136": 1,
+        "CAND_0000158": 1,
+        "CAND_0000160": 1,
+        "CAND_0000182": 1,
+        "CAND_0000184": 1,
+        "CAND_0000190": 1,
+        "CAND_0000191": 1,
+        "CAND_0000210": 1,
+        "CAND_0000227": 1,
+        "CAND_0000256": 1,
+        "CAND_0000273": 1,
+        "CAND_0000298": 1,
+        "CAND_0000343": 1,
+        "CAND_0000345": 1,
+        "CAND_0000354": 1,
+        "CAND_0000360": 1,
+        "CAND_0000395": 1,
+        "CAND_0000666": 2,
+        "CAND_0000705": 2,
+        "CAND_0001056": 2,
+        "CAND_0001126": 2,
+        "CAND_0001151": 2,
+        "CAND_0001218": 2,
+        "CAND_0001302": 2,
+        "CAND_0001389": 2,
+        "CAND_0001405": 2,
+        "CAND_0001608": 2,
+        "CAND_0001610": 2,
+        "CAND_0001819": 2,
+        "CAND_0001930": 2,
+        "CAND_0002037": 2,
+        "CAND_0002344": 2,
+        "CAND_0002426": 2,
+        "CAND_0003290": 2,
+        "CAND_0003575": 2,
+        "CAND_0003756": 2,
+        "CAND_0003791": 2,
+        "CAND_0004112": 2,
+        "CAND_0004131": 2,
+        "CAND_0004402": 2,
+        "CAND_0010257": 3,
+        "CAND_0010791": 3,
+        "CAND_0018499": 3,
+        "CAND_0036173": 3,
+        "CAND_0046525": 3,
+        "CAND_0053472": 3,
+        "CAND_0061257": 3,
+        "CAND_0066791": 3,
+        "CAND_0067866": 3,
+        "CAND_0073314": 3,
+        "CAND_0079064": 3,
+        "CAND_0093763": 3
+      },
+      "pool_source": {
+        "CAND_0037980": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0046064": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0008425": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0006567": [
+          "A",
+          "C",
+          "F",
+          "G",
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0086022": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0039754": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0031593": [
+          "A",
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0079162": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0033650": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0064326": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0083307": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0067887": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0081686": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0028318": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0039120": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0011385": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0050009": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0013406": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0036639": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0045764": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0027695": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0028793": [
+          "A",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0070202": [
+          "A",
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0040790": [
+          "A",
+          "F"
+        ],
+        "CAND_0061148": [
+          "A",
+          "F"
+        ],
+        "CAND_0061797": [
+          "A"
+        ],
+        "CAND_0098102": [
+          "A"
+        ],
+        "CAND_0001805": [
+          "A"
+        ],
+        "CAND_0075541": [
+          "A"
+        ],
+        "CAND_0087899": [
+          "A"
+        ],
+        "CAND_0009960": [
+          "A"
+        ],
+        "CAND_0010007": [
+          "A"
+        ],
+        "CAND_0030390": [
+          "A"
+        ],
+        "CAND_0033394": [
+          "A"
+        ],
+        "CAND_0054123": [
+          "A",
+          "C",
+          "F"
+        ],
+        "CAND_0028343": [
+          "A"
+        ],
+        "CAND_0051672": [
+          "A"
+        ],
+        "CAND_0083096": [
+          "A"
+        ],
+        "CAND_0095616": [
+          "A"
+        ],
+        "CAND_0007595": [
+          "A"
+        ],
+        "CAND_0083612": [
+          "A"
+        ],
+        "CAND_0024466": [
+          "A",
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0043525": [
+          "A"
+        ],
+        "CAND_0083910": [
+          "A"
+        ],
+        "CAND_0058504": [
+          "A"
+        ],
+        "CAND_0027956": [
+          "A"
+        ],
+        "CAND_0044919": [
+          "A"
+        ],
+        "CAND_0050362": [
+          "A"
+        ],
+        "CAND_0056977": [
+          "A"
+        ],
+        "CAND_0071101": [
+          "A"
+        ],
+        "CAND_0099806": [
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0065195": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0049538": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0030953": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0076251": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0064904": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0094056": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0049896": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0030827": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0024620": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0055992": [
+          "B",
+          "C",
+          "F"
+        ],
+        "CAND_0012957": [
+          "B",
+          "C",
+          "F"
+        ],
+        "CAND_0081852": [
+          "B",
+          "C"
+        ],
+        "CAND_0084819": [
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0044883": [
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0037944": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0019480": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0075249": [
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0087364": [
+          "B",
+          "C"
+        ],
+        "CAND_0079387": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0009024": [
+          "B",
+          "C"
+        ],
+        "CAND_0062247": [
+          "B",
+          "C",
+          "G"
+        ],
+        "CAND_0011162": [
+          "B"
+        ],
+        "CAND_0015578": [
+          "B",
+          "F"
+        ],
+        "CAND_0096172": [
+          "B"
+        ],
+        "CAND_0002025": [
+          "B",
+          "F",
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0037000": [
+          "B",
+          "C",
+          "F",
+          "G"
+        ],
+        "CAND_0091534": [
+          "B"
+        ],
+        "CAND_0020350": [
+          "B"
+        ],
+        "CAND_0096142": [
+          "B",
+          "F"
+        ],
+        "CAND_0052328": [
+          "B"
+        ],
+        "CAND_0041568": [
+          "B"
+        ],
+        "CAND_0045250": [
+          "B",
+          "F",
+          "G"
+        ],
+        "CAND_0069905": [
+          "B"
+        ],
+        "CAND_0074735": [
+          "B",
+          "G"
+        ],
+        "CAND_0092245": [
+          "B"
+        ],
+        "CAND_0009837": [
+          "B",
+          "G",
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0027691": [
+          "B"
+        ],
+        "CAND_0040117": [
+          "B"
+        ],
+        "CAND_0061339": [
+          "B"
+        ],
+        "CAND_0066376": [
+          "B",
+          "F",
+          "G"
+        ],
+        "CAND_0086151": [
+          "B"
+        ],
+        "CAND_0093331": [
+          "B"
+        ],
+        "CAND_0098846": [
+          "B",
+          "F"
+        ],
+        "CAND_0041610": [
+          "B",
+          "G"
+        ],
+        "CAND_0060072": [
+          "B",
+          "G"
+        ],
+        "CAND_0091909": [
+          "B"
+        ],
+        "CAND_0036437": [
+          "C",
+          "F"
+        ],
+        "CAND_0041669": [
+          "C",
+          "F"
+        ],
+        "CAND_0020708": [
+          "F",
+          "G"
+        ],
+        "CAND_0099401": [
+          "F"
+        ],
+        "CAND_0078002": [
+          "F"
+        ],
+        "CAND_0037566": [
+          "F",
+          "G"
+        ],
+        "CAND_0078042": [
+          "F"
+        ],
+        "CAND_0040887": [
+          "F"
+        ],
+        "CAND_0070398": [
+          "F"
+        ],
+        "CAND_0083879": [
+          "F"
+        ],
+        "CAND_0042029": [
+          "G"
+        ],
+        "CAND_0013536": [
+          "G"
+        ],
+        "CAND_0076831": [
+          "G"
+        ],
+        "CAND_0050454": [
+          "G"
+        ],
+        "CAND_0095619": [
+          "G"
+        ],
+        "CAND_0030031": [
+          "G"
+        ],
+        "CAND_0047721": [
+          "G"
+        ],
+        "CAND_0064270": [
+          "G"
+        ],
+        "CAND_0088025": [
+          "G"
+        ],
+        "CAND_0061655": [
+          "G"
+        ],
+        "CAND_0003977": [
+          "G",
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000001": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000002": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000003": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000004": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000005": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000006": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000007": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000008": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000009": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000010": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000011": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000012": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000013": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000014": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000015": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000016": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000017": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000018": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000019": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000020": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000021": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000022": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000023": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000024": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000025": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000026": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000027": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000028": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000031": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000043": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000091": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000096": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000112": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000136": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000158": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000160": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000182": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000184": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000190": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000191": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000210": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000227": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000256": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000273": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000298": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000343": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000345": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000354": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000360": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000395": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000666": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0000705": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001056": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001126": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001151": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001218": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001302": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001389": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001405": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001608": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001610": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001819": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0001930": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0002037": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0002344": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0002426": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0003290": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0003575": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0003756": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0003791": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0004112": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0004131": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0004402": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0010257": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0010791": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0018499": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0036173": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0046525": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0053472": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0061257": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0066791": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0067866": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0073314": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0079064": [
+          "ORIGINAL_GOLD"
+        ],
+        "CAND_0093763": [
+          "ORIGINAL_GOLD"
+        ]
+      }
+    }
+  ]
+}
