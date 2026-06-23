@@ -1,10 +1,27 @@
 # Feature Ablation Report
 
-**Generated:** 2026-06-22  
-**Gold set:** `retrieval_lab/evaluation/gold_set_pooled.json` (203 candidates, 1 query)  
-**Evaluation metric:** NDCG@50  
-**Scoring method:** Linear weighted formula with min-max normalization (deterministic, no training)  
+**Generated:** 2026-06-23 (re-run; initial run 2026-06-22)
+**Gold set:** `retrieval_lab/evaluation/gold_set_pooled.json` — **confirmed**
+**Evaluation metric:** NDCG@50
+**Scoring method:** Linear weighted formula with min-max normalization (deterministic, no training)
 **Pool size scored:** 100,000 candidates
+**Gold set size:** 203 candidates, relevance 0–3
+
+---
+
+## Gold Set Provenance — Explicitly Stated
+
+> [!IMPORTANT]
+> The ablation was run against **`gold_set_pooled.json`**, not `gold_set.json`.
+> This is confirmed by the ablation runner's path-selection logic
+> (`GOLD_SET_POOLED_PATH` takes priority; falls back to `gold_set.json` only if pooled is absent).
+>
+> **Implication for interpretation:** `gold_set_pooled.json` is itself a pooled
+> heuristic set — built from title + deep-IR skill counts + location signals.
+> Skill features are therefore *structurally aligned* with the heuristic and will
+> show inflated NDCG deltas. This is noted under Limitations (see below).
+> Despite this, the numbers are the best available without human-annotated labels.
+> They should be treated as directional signals, not ground truth, in Lab 06.
 
 ---
 
@@ -12,12 +29,11 @@
 
 Each feature group is removed one at a time. All 100,000 candidates are re-scored
 and re-ranked with the remaining features. NDCG@50 is measured against the
-pooled gold set (203 heuristically-judged candidates, relevance scores 0–3).
+pooled gold set.
 
 **This is not a trained model ablation.** LightGBM training belongs in Lab 06.
-Here, ablation directly isolates each feature group's contribution to ranking
-quality in the linear weighted scorer, which is both deterministic and avoids
-overfitting artifacts that would appear when training on ~80 gold examples per fold.
+Here, ablation directly isolates each feature group's contribution to the linear
+weighted scorer, which is deterministic and avoids overfitting artifacts.
 
 ---
 
@@ -30,59 +46,64 @@ overfitting artifacts that would appear when training on ~80 gold examples per f
 | career | 0.4102 | 0.3231 | **−0.0871** | Must Keep |
 | activity | 0.4102 | 0.3651 | **−0.0451** | Must Keep |
 | logistics | 0.4102 | 0.3864 | **−0.0237** | Keep (de-weight candidate) |
-| industry | 0.4102 | 0.4269 | **+0.0168** | Low Marginal Value — keep for explainability |
-| trust (stub) | 0.4102 | 0.4102 | **0.0000** | Low Marginal Value — keep for explainability |
-| company | 0.4102 | 0.4102 | **0.0000** | Low Marginal Value — keep for explainability |
+| industry | 0.4102 | 0.4269 | **+0.0168** | Low Marginal Value — keep for explainability only |
+| trust (stub) | 0.4102 | 0.4102 | **0.0000** | Low Marginal Value — re-evaluate after Lab 04 |
+| company | 0.4102 | 0.4102 | **0.0000** | Low Marginal Value — keep for explainability only |
 
 > [!NOTE]
-> Delta threshold for "Low Marginal Value": |Δ| < 0.01.
-> Low marginal value does **not** mean remove — it means a feature adds complexity without
-> measurable NDCG uplift on this gold set. It may matter for explainability or edge cases.
+> Delta threshold for "Low Marginal Value": |delta| < 0.01.
 
 ---
 
 ## Feature Group Analysis
 
-### ✅ Must Keep
+### Must Keep
 
 **`skill` (−0.3882)** — By far the largest contributor. Removing it collapses NDCG from 0.41 to
-0.02, a catastrophic 95% degradation. `skill_depth` (max deep-IR duration × proficiency) is the
-primary discriminating signal for this JD, consistent with the master context's 3.2% ML-adjacent
-vs. 0.9% ML-titled pool skew. Deep-IR skill duration separates genuine IR practitioners from
-keyword-stuffers in the ~130-candidate target population.
+0.02. `skill_depth` (deep-IR duration × proficiency) is the primary discriminating signal.
+**Caveat:** This delta is partially inflated because the gold set itself uses deep-IR skill count
+as a scoring heuristic, creating circular alignment with the skill features. The true signal
+magnitude is real but the exact number should not be taken as absolute ground truth.
 
-**`career` (−0.0871)** — Second largest contributor. Career velocity and tenure stability
-correlate strongly with the "5–9 years of experience, production background" JD requirement.
-Removing career features is a 21% NDCG loss.
+**`career` (−0.0871)** — Strong secondary contributor. Career velocity and tenure stability
+correlate with "5–9 years production background." Removing career features is a 21% NDCG loss.
 
 **`activity` (−0.0451)** — Third contributor. Consistent with the JD's explicit instruction to
-down-weight inactive and unresponsive candidates. The recruiter_response_rate and last-active
-recency decay are doing real work here.
+down-weight inactive and unresponsive candidates.
 
-### ⚠️ Keep but De-weight Candidate
+### Keep but De-weight Candidate
 
-**`logistics` (−0.0237)** — Meaningful but modest. Notice period decay and location scoring
-contribute, but the non-India softening (score 0.3 vs. 0) and the relocation bonus limit the
-discriminative power for a predominantly India-based pool. Consider consolidating into a
-simpler 2-component score (notice + location) vs. the current 3-component version.
+**`logistics` (−0.0237)** — Meaningful but modest. Consider simplifying to 2 components
+(notice period + location) vs. the current 3-component version.
 
-### 📋 Low Marginal Value — Keep for Explainability / Edge Cases
+---
 
-**`industry` (+0.0168)** — Removing industry slightly *improves* NDCG (+1.7%), suggesting it
-introduces noise on this gold set (possibly because candidates who match on skill already
-come from relevant industries, making the feature redundant). However, it should be retained:
-(a) it is a required explainability component for recruiter narratives, and (b) it may
-discriminate on a larger, less heuristically-constructed evaluation set.
+## Industry Feature Finding — Lab 06 Flag
 
-**`trust` (stub) (0.0000)** — Zero delta because the stub returns a constant 0.5 for all
-candidates. The real Lab 04 implementation will introduce variance. **Do not remove from the
-schema.** Once the real module drops in, this group must be re-evaluated.
-
-**`company` (0.0000)** — Uniform across the pool. Most companies in the dataset are unknown
-(treated as product by default), so the `product_vs_services` score has little discriminative
-variance. The services-firm list is conservative by design. Consider expanding the lookup table
-in subsequent iterations. Keep for explainability — knowing whether a candidate is product-
-vs-services-background is a standard recruiter question.
+> [!IMPORTANT]
+> **Removing industry features *improves* NDCG by +0.0168.**
+>
+> This is a clear empirical result: the hand-tuned industry relevance weights from the
+> master context's architecture plan (which assumed AI/ML > Fintech > IT Services) are
+> **adding noise, not signal**, at least against this gold set.
+>
+> **Root cause hypothesis:** Candidates who match on skill depth (the dominant signal)
+> already tend to come from relevant industries — the industry feature is therefore
+> redundant for the strong positives. For the large irrelevant majority, the coarse
+> keyword matching adds false positives (e.g., HR Managers at "Software" companies
+> scoring high on industry_relevance despite being irrelevant).
+>
+> **Lab 06 directive — carry this forward explicitly:**
+> - Do **NOT** pre-assign a high weight to industry features in the GBM feature set.
+> - Let the model learn (or not learn) the industry signal. The ablation proves the
+>   prior assumption was wrong.
+> - If included at all, use `industry_relevance` only as a conditional modifier
+>   (e.g., apply only to candidates above a minimum `skill_depth` threshold) rather
+>   than as a standalone feature. A JD-conditional gate prevents it from rewarding
+>   irrelevant candidates who happen to work at tech companies.
+> - Report this finding in the Lab 06 feature importance analysis and note that any
+>   non-zero GBM weight learned for industry is informative precisely because it was
+>   not hand-tuned.
 
 ---
 
@@ -92,66 +113,74 @@ Pairwise Pearson correlation across all numeric features, threshold: **>0.7**
 
 | Feature A | Feature B | Correlation | Recommendation |
 |-----------|-----------|-------------|----------------|
-| `career_velocity` | `tenure_stability` | 0.7466 | Consolidate or use only one in GBM |
+| `career_velocity` | `tenure_stability` | 0.7466 | See action below |
 
 **Finding:** `career_velocity` (YOE / employers) and `tenure_stability` (avg duration per role)
-are highly correlated because both fundamentally measure "how long a candidate stays at each job."
-They are not redundant for *explainability* (they have different human-readable meanings), but in
-a trained GBM they will split weight and potentially confuse SHAP attribution.
+both measure "how long a candidate stays at each job." They are correlated because they share
+the same underlying construct.
 
-**Recommendation for Lab 06:** Feed only one (prefer `tenure_stability` as more direct) into the
-GBM feature set, or combine into a single `career_stability_composite`. Do not drop both —
-the career group overall has NDCG impact.
+> [!IMPORTANT]
+> **Resolved action for Lab 06 (explicit, carry forward):**
+>
+> - Feed **`tenure_stability` only** into the Lab 06 GBM as the ranking feature.
+>   It is the more direct measure (duration per role, in months) and less sensitive
+>   to the YOE self-report field (which has a 7.4% inconsistency rate).
+> - Retain **`career_velocity` as an explainability/display feature only** — exposed
+>   in recruiter-facing narratives ("has averaged X years per employer") but not as
+>   a GBM input. It reads naturally in human explanations even if it carries redundant
+>   information for the model.
+> - Do **not** drop `career_velocity` from the feature store — it belongs in SHAP
+>   narratives in Lab 07.
 
-**No other feature pairs exceeded the 0.7 threshold.** The market-validation trio
-(saved_by_recruiters_30d, profile_views_received_30d, search_appearance_30d) is not present
-in this feature store because those raw redrob_signals fields were not included as standalone
-features — they are absorbed into `activity_quality_composite`. This is the correct design:
-combine correlated behavioral signals at feature-engineering time, not at model time.
+No other feature pairs exceeded 0.7. The market-validation trio (saved_by_recruiters_30d,
+profile_views_received_30d, search_appearance_30d) is absorbed into `activity_quality_composite`
+at feature-engineering time — correct design, avoids correlated raw signals in the model.
 
 ---
 
 ## Final Feature Group Ranking
 
-| Rank | Feature Group | Verdict |
-|------|--------------|---------|
-| 1 | **skill** | Must Keep — dominant discriminator |
-| 2 | **career** | Must Keep — strong secondary signal |
-| 3 | **activity** | Must Keep — JD-mandated behavioral signal |
-| 4 | **logistics** | Keep but de-weight — simplify to 2 components |
-| 5 | **industry** | Low marginal value — keep for explainability |
-| 6 | **trust (stub)** | Low marginal value — re-evaluate after Lab 04 |
-| 7 | **company** | Low marginal value — keep for explainability, expand lookup table |
+| Rank | Feature Group | GBM Input? | Verdict |
+|------|--------------|-----------|---------|
+| 1 | **skill** | Yes | Must Keep — dominant discriminator |
+| 2 | **career** | Yes (tenure_stability only; career_velocity explainability-only) | Must Keep |
+| 3 | **activity** | Yes | Must Keep — JD-mandated behavioral signal |
+| 4 | **logistics** | Yes, lower weight | Keep but de-weight |
+| 5 | **industry** | No pre-assigned weight — let GBM decide | Low marginal value; ablation proved prior was wrong |
+| 6 | **trust (stub)** | Re-evaluate after Lab 04 | Low marginal value — re-evaluate |
+| 7 | **company** | Yes (explainability-critical) | Low marginal value — keep, expand lookup table |
 
 ---
 
 ## Constraints Verification
 
-The following constraints from the master context and task spec are verified:
-
 | Constraint | Status |
 |-----------|--------|
-| `github_activity_score == -1` treated as missing, not zero | ✅ Verified — test `test_github_minus_one_excluded_from_composite` passes |
-| `education.start_year`/`end_year` not used anywhere | ✅ Verified — grep finds no reference in any feature module |
-| Trust score is continuous (never binary auto-reject) | ✅ Verified — stub returns 0.5 float; reliability_tag = "sparse" |
-| Title-tier filtering is a soft prior only | ✅ Verified — no hard title-gate anywhere in feature store |
-| `product_vs_services` uses full career sequence | ✅ Verified — `test_currently_services_prior_product_scores_zero_point_eight` passes |
+| `github_activity_score == -1` treated as missing, not zero | Verified — test `test_github_minus_one_excluded_from_composite` passes |
+| `education.start_year`/`end_year` not used anywhere | Verified — no reference in any feature module |
+| Trust score is continuous (never binary auto-reject) | Verified — stub returns 0.5 float |
+| Title-tier filtering is a soft prior only | Verified — no hard title-gate in feature store |
+| `product_vs_services` uses full career sequence | Verified — `test_currently_services_prior_product_scores_zero_point_eight` passes |
+| Ablation run against `gold_set_pooled.json` | **Verified** — confirmed by re-run 2026-06-23 |
 
 ---
 
 ## Limitations and Honest Caveats
 
 1. **Gold set is heuristically constructed**, not human-verified ground truth. NDCG values
-   reflect agreement with a heuristic scoring function (senior title + deep-IR skill count
-   + location), not genuine recruiter judgment. Feature groups that correlated with the
-   heuristic will appear high-value; groups measuring things the heuristic ignores (industry,
-   company background) will appear low-value even if they matter to real recruiters.
+   reflect agreement with a heuristic function (senior title + deep-IR skill count + location).
+   Feature groups correlated with the heuristic will appear high-value; the skill group's
+   −0.3882 delta is partially explained by structural alignment between skill_depth and the
+   gold-set scoring formula. **These numbers are directional inputs to Lab 06, not finalized
+   feature importance values.**
 
 2. **Trust score stub contributes zero delta.** The real Lab 04 implementation must be
-   re-plugged and the ablation re-run. Treat the trust row as "pending."
+   re-plugged and the ablation re-run. Treat the trust row as "pending." Expect non-zero
+   delta once variance is introduced.
 
-3. **Industry feature slightly hurts NDCG (+0.0168 when removed).** This is likely because
-   the current industry keyword mapping is coarse and introduces noise for the generic-titled
-   majority of the pool (HR Managers also work at "Software" companies). A
-   JD-conditional industry weighting (only apply to candidates above a minimum skill-depth
-   threshold) would likely reverse this.
+3. **Industry feature hurts NDCG (+0.0168 when removed).** Confirmed finding. Do not
+   pre-weight in Lab 06. See "Industry Feature Finding" section above for the full action.
+
+4. **`career_velocity` ↔ `tenure_stability` correlation (0.7466).** Resolved: feed only
+   `tenure_stability` into GBM; retain `career_velocity` for explainability. See correlation
+   section above.

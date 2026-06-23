@@ -169,8 +169,8 @@ def run_ablation(feature_store_path: str) -> tuple[dict, float]:
         scores.sort(key=lambda x: x[1], reverse=True)
         ndcg = compute_ndcg_at_k([x[0] for x in scores], judgments)
         delta = ndcg - baseline_ndcg
-        flag = " ← LOW MARGINAL VALUE" if abs(delta) < LOW_VALUE_THRESHOLD else ""
-        print(f"  Without {group:10s}: NDCG@{NDCG_K}={ndcg:.4f}  Δ={delta:+.4f}{flag}")
+        flag = " <- LOW MARGINAL VALUE" if abs(delta) < LOW_VALUE_THRESHOLD else ""
+        print(f"  Without {group:10s}: NDCG@{NDCG_K}={ndcg:.4f}  delta={delta:+.4f}{flag}")
         results[group] = {"ndcg": ndcg, "delta": delta}
 
     return results, baseline_ndcg
