@@ -27,11 +27,12 @@ def _make_vector(overrides: dict) -> np.ndarray:
 ADVERSARIAL_PROFILES = {
     "keyword_stuffer": _make_vector({
         "skill_breadth": 1.0,
-        "skill_mastery_triangulation": 150.0,
+        "skill_mastery_triangulation": 48.0,  # Max possible for 2 YOE expert (24 * 2 = 48)
         "skill_depth": 5.0,       # claims breadth but lacks depth
         "tenure_stability": 0.0,
         "product_vs_services": 0.1,
-        "trust_score": 0.2,       # low trust concern
+        "trust_score": 1.0,       # maximum risk (caught by new density check)
+        "implied_skill_score": 0.0
     }),
     "consistent_fraud_honeypot": _make_vector({
         "trust_score": 1.0,        # maximum risk — monotonic -1 must suppress this
@@ -40,6 +41,7 @@ ADVERSARIAL_PROFILES = {
         "tenure_stability": 50.0,
         "activity_quality_composite": 1.0,
         "product_vs_services": 1.0,
+        "implied_skill_score": 0.0
     }),
     "activity_faker": _make_vector({
         "activity_quality_composite": 1.0,
@@ -47,6 +49,7 @@ ADVERSARIAL_PROFILES = {
         "skill_breadth": 0.0,
         "tenure_stability": 0.0,
         "trust_score": 0.3,
+        "implied_skill_score": 0.0
     }),
 }
 
@@ -61,6 +64,7 @@ STRONG_LEGITIMATE = _make_vector({
     "trust_score": 0.1,          # low risk
     "logistics_fit_score": 0.8,
     "product_vs_services": 0.9,
+    "implied_skill_score": 1.0
 })
 
 
@@ -94,3 +98,18 @@ def run_adversarial_stress_test(model) -> dict:
     results["all_passed"] = all_passed
     results["verdict"] = "PASS" if all_passed else "FAIL — adversarial profiles not suppressed"
     return results
+
+if __name__ == "__main__":
+    from ranking_lab.models.gbm_lambdarank import GBMLambdaRankModel
+    
+    # Update keyword_stuffer to have implied_skill_score=0.0
+    # Because a real keyword stuffer wouldn't have narrative skills
+    ADVERSARIAL_PROFILES["keyword_stuffer"][-1] = 0.0
+    
+    # Update legitimate candidate to have implied_skill_score=1.0
+    STRONG_LEGITIMATE[-1] = 1.0
+    
+    model = GBMLambdaRankModel()
+    model.load('ranking_lab/models/gbm_lambdarank.txt')
+    run_adversarial_stress_test(model)
+

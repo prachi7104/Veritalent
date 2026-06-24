@@ -9,7 +9,8 @@ TRAINING_FEATURES = [
     "activity_quality_composite",
     "trust_score",
     "logistics_fit_score",
-    "product_vs_services"
+    "product_vs_services",
+    "implied_skill_score"
 ]
 
 def get_monotonic_constraints() -> list[int]:
@@ -25,6 +26,8 @@ def get_monotonic_constraints() -> list[int]:
             constraints.append(-1) # 1.0 = high concern risk flag, so higher score -> lower rank
         elif feature == "skill_depth":
             constraints.append(1)  # Higher depth -> higher rank
+        elif feature == "implied_skill_score":
+            constraints.append(1)  # Higher implied skill -> higher rank
         else:
             constraints.append(0)  # Let the model figure out the rest
     return constraints

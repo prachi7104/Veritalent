@@ -9,6 +9,7 @@ from trust_lab.checks.proficiency_plausibility import check_proficiency_plausibi
 from trust_lab.checks.assessment_corroboration import check_assessment_corroboration
 from trust_lab.checks.template_reliance_signal import check_template_reliance
 from trust_lab.checks.identity_verification import check_identity_verification
+from trust_lab.checks.skill_density_check import check_skill_density
 
 def compute_trust_score(candidate: dict, known_templates: set = None, weights: dict = None) -> dict:
     """
@@ -17,12 +18,15 @@ def compute_trust_score(candidate: dict, known_templates: set = None, weights: d
     NEVER implement an auto-reject threshold anywhere in this module.
     """
     if weights is None:
+        # Scale down other weights proportionally to make room for keyword_stuffing = 0.25
+        # Original sum was 3.7. New sum is 1.0.
         weights = {
-            "yoe_consistency": 1.0,
-            "proficiency": 1.0,
-            "assessment": 1.0,
-            "template": 0.2, # configured to default low weight
-            "identity": 0.5
+            "yoe_consistency": 0.2027,
+            "proficiency": 0.2027,
+            "assessment": 0.2027,
+            "template": 0.0405,
+            "identity": 0.1014,
+            "keyword_stuffing": 0.25
         }
         
     yoe_res = check_yoe_consistency(candidate)
@@ -30,6 +34,7 @@ def compute_trust_score(candidate: dict, known_templates: set = None, weights: d
     assm_res = check_assessment_corroboration(candidate)
     temp_res = check_template_reliance(candidate, known_templates)
     ident_res = check_identity_verification(candidate)
+    dens_res = check_skill_density(candidate)
     
     # Cap individual risks at 1.0
     # YOE deviation: we start risk accumulation above 1.5 years
@@ -42,17 +47,19 @@ def compute_trust_score(candidate: dict, known_templates: set = None, weights: d
         
     temp_risk = temp_res["template_fraction"]
     ident_risk = ident_res["unverified_fraction"]
+    dens_risk = dens_res["keyword_stuffing_density"]
     
     total_weight = weights["yoe_consistency"] + weights["proficiency"] + \
                    (weights["assessment"] * assm_res["weight_multiplier"]) + \
-                   weights["template"] + weights["identity"]
+                   weights["template"] + weights["identity"] + weights["keyword_stuffing"]
                    
     weighted_sum = (
         yoe_risk * weights["yoe_consistency"] +
         prof_risk * weights["proficiency"] +
         assm_risk * weights["assessment"] * assm_res["weight_multiplier"] +
         temp_risk * weights["template"] +
-        ident_risk * weights["identity"]
+        ident_risk * weights["identity"] +
+        dens_risk * weights["keyword_stuffing"]
     )
     
     final_score = weighted_sum / total_weight if total_weight > 0 else 0.0
@@ -64,13 +71,15 @@ def compute_trust_score(candidate: dict, known_templates: set = None, weights: d
             "prof_risk": float(prof_risk),
             "assm_risk": float(assm_risk),
             "temp_risk": float(temp_risk),
-            "ident_risk": float(ident_risk)
+            "ident_risk": float(ident_risk),
+            "dens_risk": float(dens_risk)
         },
         "details": {
             "yoe": yoe_res["details"],
             "prof": prof_res["details"],
             "assm": assm_res["details"],
             "temp": temp_res["details"],
-            "ident": ident_res["details"]
+            "ident": ident_res["details"],
+            "dens": dens_res
         }
     }

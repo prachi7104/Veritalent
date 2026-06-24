@@ -16,3 +16,4 @@ from .features import activity_features
 from .features import industry_features
 from .features import logistics_features
 from .features import company_features
+from .features import implied_skill_features
