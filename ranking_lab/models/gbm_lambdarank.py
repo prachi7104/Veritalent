@@ -37,7 +37,13 @@ class GBMLambdaRankModel:
         Fits the LambdaRank model. Since we have a single query (the JD), 
         the group parameter is just the number of training samples.
         """
-        group = [len(X_train)]
+        n_samples = len(X_train)
+        group = []
+        while n_samples > 0:
+            sz = min(n_samples, 5000)
+            group.append(sz)
+            n_samples -= sz
+            
         self.model.fit(X_train, y_train, group=group, **kwargs)
 
     def predict(self, X: np.ndarray) -> np.ndarray:

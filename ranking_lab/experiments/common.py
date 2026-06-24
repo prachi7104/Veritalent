@@ -65,7 +65,8 @@ def build_training_matrix(feature_store: dict, labels: dict):
         feats = feature_store[cid]
         row = [float(feats.get(f, 0.0) or 0.0) for f in TRAINING_FEATURES]
         X.append(row)
-        y.append(int(label))
+        lbl_val = label["label"] if isinstance(label, dict) else label
+        y.append(int(lbl_val))
         ids.append(cid)
     return np.array(X), np.array(y), ids
 
