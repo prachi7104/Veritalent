@@ -1,0 +1,1002 @@
+{
+  "CAND_0048465": {
+    "label": 1,
+    "reason": "Has 5.7 years of software engineering and product experience at Zomato, but lacks professional IR/ML work and core search/retrieval expertise, limiting fit to a weakly plausible candidate."
+  },
+  "CAND_0001903": {
+    "label": 1,
+    "reason": "With 2.5 years in a services firm, no demonstrated IR expertise (ranking, vector search) and only ML\u2011adjacent skills, the candidate is a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0038431": {
+    "label": 1,
+    "reason": "Candidate is a mobile/frontend developer with some OpenSearch experience but lacks professional ML/IR depth (ranking, vector encoders) and has a long notice period, making them a weak but plausible fit."
+  },
+  "CAND_0096731": {
+    "label": 0,
+    "reason": "The candidate has only ~3 years experience, no deep IR expertise (ranking, vector search), lacks active coding signals, and is based in the US with no relocation intent, making them irrelevant for the senior AI/ML IR role."
+  },
+  "CAND_0025729": {
+    "label": 1,
+    "reason": "Candidate has 4.5 years in QA and frontend roles with only self\u2011learned ML side projects, no professional IR or ranking system experience, lacks product\u2011company background, has a long notice period, and shows no active coding portfolio, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0066975": {
+    "label": 0,
+    "reason": "The candidate has only 1.8 years in QA/test automation, no demonstrated IR or search expertise, lacks active coding signals, and does not meet the experience or core skill requirements."
+  },
+  "CAND_0026198": {
+    "label": 1,
+    "reason": "Candidate has 3.8 years of backend QA experience and only self\u2011learned ML/RAG exposure, lacking the required deep IR expertise, sufficient seniority, and product\u2011focused search background."
+  },
+  "CAND_0027649": {
+    "label": 1,
+    "reason": "Candidate has ~3 years experience with some vector search and embedding skills but lacks the 5\u20119 years required and deep IR expertise (ranking, text encoders, search backend) for a senior role."
+  },
+  "CAND_0016000": {
+    "label": 1,
+    "reason": "The candidate is a junior full\u2011stack developer with 2 years experience and only self\u2011studied ML/RAG exposure, lacking the required 5\u20119 years and deep IR expertise such as ranking or vector search."
+  },
+  "CAND_0008618": {
+    "label": 2,
+    "reason": "Candidate shows solid IR expertise (OpenSearch, Weaviate, Pinecone, embeddings, semantic search) and product experience at Zoho, but has slightly under\u2011required experience (4.7y) and a long 120\u2011day notice period."
+  },
+  "CAND_0039521": {
+    "label": 2,
+    "reason": "Candidate shows strong IR expertise (ranking, BM25, vector search, RAG) and product experience at Salesforce, but with only 3 years of experience and no active coding signals, they fall short of the seniority requirement."
+  },
+  "CAND_0046010": {
+    "label": 1,
+    "reason": "Candidate has 5+ years experience and some vector search skills, but lacks deep IR expertise, active coding signals, and preferred location/notice period, making the fit weak."
+  },
+  "CAND_0039683": {
+    "label": 1,
+    "reason": "Candidate is a software engineer with ~5 years experience, no professional IR or ranking system work, only self\u2011learned RAG side project, and lacks core IR skills and preferred notice period/location"
+  },
+  "CAND_0003680": {
+    "label": 1,
+    "reason": "Candidate has 8 years of data engineering experience with some IR knowledge (BM25, Learning to Rank) but lacks deep IR expertise, search backend work, and strong coding activity, making them a plausible but weak fit."
+  },
+  "CAND_0080766": {
+    "label": 3,
+    "reason": "Senior staff ML engineer with ~9 years of product\u2011focused IR experience (ranking, hybrid/vector search, search infrastructure) and active coding signals, meeting all core and preferred criteria."
+  },
+  "CAND_0083239": {
+    "label": 1,
+    "reason": "The candidate has limited (1.4 yr) experience as a mobile/devops engineer, lacks deep IR expertise (ranking, vector search), has no active coding signals, and a long notice period, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0013536": {
+    "label": 2,
+    "reason": "Strong IR expertise and product experience with ranking and vector search, but location mismatch and long 90\u2011day notice reduce fit for the preferred senior role"
+  },
+  "CAND_0073431": {
+    "label": 1,
+    "reason": "Candidate has 6.9 years of product\u2011company experience and active coding, but lacks demonstrated deep IR expertise (ranking, text encoders, search backend) beyond a generic vector search skill."
+  },
+  "CAND_0033942": {
+    "label": 1,
+    "reason": "Candidate has 2.1 years of data engineering experience with some IR\u2011related skills (BM25, pgvector) but lacks the required seniority, deep IR expertise, and product\u2011focused search background."
+  },
+  "CAND_0034575": {
+    "label": 1,
+    "reason": "Candidate has only 3.5 years in QA/backend roles, no professional IR or ranking experience, lacks required seniority and active coding signals, and does not meet product or location preferences."
+  },
+  "CAND_0016360": {
+    "label": 1,
+    "reason": "Candidate has 9 years of software engineering experience and some self\u2011learned vector search skills, but lacks professional IR depth (ranking, text encoders, search backend) and product\u2011company background, and has a long notice period and non\u2011local location."
+  },
+  "CAND_0001724": {
+    "label": 1,
+    "reason": "The candidate has 2 years of software engineering experience and some ML-adjacent skills (Pinecone, LoRA), but lacks the required 5\u20119 years, deep IR expertise, and product\u2011focused AI experience."
+  },
+  "CAND_0012677": {
+    "label": 0,
+    "reason": "With just 1.1 years of experience, no demonstrated IR or ranking expertise, and a background in a services firm rather than a product company, the candidate does not meet the senior AI/ML search & retrieval requirements."
+  },
+  "CAND_0027952": {
+    "label": 1,
+    "reason": "Candidate has 6 years of software engineering experience and some exposure to vector databases (Milvus) but lacks demonstrated deep IR expertise, active coding signals, and product-focused ML work, making them a weak fit."
+  },
+  "CAND_0055792": {
+    "label": 1,
+    "reason": "Candidate has extensive software experience but no professional IR/ML work, limited product background, poor coding signals, and mismatched location/notice period."
+  },
+  "CAND_0099837": {
+    "label": 1,
+    "reason": "Candidate has 5+ years of software engineering experience and an AI PhD, but lacks professional IR/ML experience, core search/retrieval skills, and active coding signals, making them a weak fit."
+  },
+  "CAND_0030468": {
+    "label": 3,
+    "reason": "Senior applied scientist with 5+ years of product-focused IR experience, deep expertise in ranking, text encoders, vector search (Milvus, OpenSearch), active coding signals, and product company background, meeting all core requirements."
+  },
+  "CAND_0075815": {
+    "label": 1,
+    "reason": "Candidate has 8+ years of software experience and an advanced Learning to Rank skill, but lacks professional IR depth, product\u2011focused ML work, active coding signals, and does not meet location/notice preferences."
+  },
+  "CAND_0020877": {
+    "label": 3,
+    "reason": "Candidate has 5+ years of product\u2011focused ML experience, actively builds and ships semantic search/RAG systems with deep IR expertise (vector embeddings, Elasticsearch, FAISS, Milvus, Qdrant) and strong coding signals, meeting core requirements despite a 60\u2011day notice period."
+  },
+  "CAND_0066924": {
+    "label": 1,
+    "reason": "The candidate has modest IR knowledge (Semantic Search) but only 3.9 years experience, lacks deep IR system expertise, product background, and does not meet location or notice\u2011period preferences."
+  },
+  "CAND_0068770": {
+    "label": 1,
+    "reason": "Candidate has limited 2.5 years experience, no professional IR or search backend work, and lacks product\u2011focused ML experience, though they show some ML\u2011adjacent skills like Sentence Transformers."
+  },
+  "CAND_0034867": {
+    "label": 1,
+    "reason": "Candidate has modest IR exposure (BM25, NLP) but only 4.3 years experience, lacks deep IR expertise and product-search background, and is based in Delhi with no relocation willingness."
+  },
+  "CAND_0020272": {
+    "label": 1,
+    "reason": "Candidate has 6.9 years experience and some ML-adjacent skills (RAG, Haystack, MLflow) but lacks professional deep IR experience, active coding signals, and product-focused search work, making the fit weak."
+  },
+  "CAND_0005968": {
+    "label": 1,
+    "reason": "The candidate has ~3.5 years of data\u2011engineering experience and some ML exposure (e.g., LlamaIndex), but lacks the required 5\u20119 years, deep IR expertise (ranking, vector search), and product\u2011focused AI background."
+  },
+  "CAND_0007353": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering experience and some self\u2011learned RAG/ML exposure, but lacks professional IR expertise (ranking, vector search) and product\u2011focused ML work required for the role."
+  },
+  "CAND_0017704": {
+    "label": 1,
+    "reason": "The candidate has 6.5 years experience and some self\u2011learned AI/ML exposure, but lacks professional IR/ search expertise, deep ML engineering work, and has a QA/ frontend background with a long notice period."
+  },
+  "CAND_0039534": {
+    "label": 1,
+    "reason": "The candidate has ~4 years of backend experience and some ML-adjacent skills (recommendation systems, LLM fine\u2011tuning, Kubeflow) but lacks the required 5\u20119 years, deep IR expertise, and product\u2011focused ML work needed for a senior search & retrieval role."
+  },
+  "CAND_0058556": {
+    "label": 1,
+    "reason": "DevOps/backend background with modest ML tooling exposure but no demonstrated IR expertise, product-search experience, or active coding signals, resulting in a weak fit for the senior IR role."
+  },
+  "CAND_0043063": {
+    "label": 1,
+    "reason": "Candidate has 9 years experience but primarily in QA, DevOps, and full\u2011stack roles with no professional IR or ranking system work, only self\u2011learned ML, and mismatches on location and notice period."
+  },
+  "CAND_0074375": {
+    "label": 1,
+    "reason": "Candidate has 9.7 years of software/devops experience but no professional IR/ML work, no active coding signals, and lacks the required search/retrieval expertise."
+  },
+  "CAND_0010294": {
+    "label": 1,
+    "reason": "Candidate has 8 years experience and some ML-adjacent skills (Weaviate, MLflow) but lacks demonstrated deep IR expertise, product\u2011company background, active coding signals, and preferred location/notice period."
+  },
+  "CAND_0031418": {
+    "label": 1,
+    "reason": "Candidate has 7+ years of data engineering experience with some ML exposure but lacks the required deep IR expertise (ranking, vector search) and product-focused ML background."
+  },
+  "CAND_0083192": {
+    "label": 1,
+    "reason": "Candidate is a mobile/backend developer with only 3 years experience and self\u2011learned ML/RAG projects, lacking professional IR depth, product\u2011focused experience, and required years/notice period."
+  },
+  "CAND_0014574": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years of software engineering experience and some ML-adjacent skills (Milvus, Kubeflow), but lacks demonstrated deep IR expertise, product\u2011company background, and has a long notice period, making the fit weak."
+  },
+  "CAND_0070712": {
+    "label": 1,
+    "reason": "Candidate has 6.8 years of software experience and some intermediate IR/Vector Search skills, but lacks professional deep IR work, ranking or search backend experience, and their recent roles focus on cloud/infra rather than product ML."
+  },
+  "CAND_0089017": {
+    "label": 1,
+    "reason": "Candidate has 9+ years of software engineering experience and some self\u2011learned ML exposure, but lacks professional IR expertise, product\u2011focused ML work, and relevant location/notice period."
+  },
+  "CAND_0043417": {
+    "label": 1,
+    "reason": "The candidate has the required experience length and coding background, but lacks professional IR/Ranking or search backend expertise and has only self\u2011learned ML work, with a long notice period and non\u2011preferred location."
+  },
+  "CAND_0048466": {
+    "label": 1,
+    "reason": "Candidate shows self\u2011learned ML/RAG and semantic search skills but no professional IR depth, product experience, or active coding evidence, making the fit weak."
+  },
+  "CAND_0085477": {
+    "label": 1,
+    "reason": "Candidate has ~2.5 years of data\u2011engineering experience with some ML side projects, but lacks the 5\u20119 years required, deep IR expertise, and product\u2011focused ML work needed for the senior search & retrieval role."
+  },
+  "CAND_0095858": {
+    "label": 1,
+    "reason": "The candidate has ML engineering experience but lacks the required deep IR expertise (ranking, vector search) and falls short on years, location, and notice period criteria."
+  },
+  "CAND_0061814": {
+    "label": 1,
+    "reason": "The candidate has 4.2 years of software engineering experience and self\u2011studied AI/ML with a small RAG side project, but lacks professional ML work, core IR expertise, sufficient seniority, active coding signals, and the preferred product\u2011focused background for the role."
+  },
+  "CAND_0056587": {
+    "label": 1,
+    "reason": "Candidate has ~5 years of data engineering/ML work but lacks the required deep IR expertise (ranking, vector search) and falls short on experience years and notice period expectations."
+  },
+  "CAND_0032616": {
+    "label": 1,
+    "reason": "With just 1.3 years in QA/test automation, no product experience, a 120\u2011day notice, and only superficial IR exposure (e.g., Learning to Rank), the candidate falls short of the senior IR depth and experience required."
+  },
+  "CAND_0027194": {
+    "label": 1,
+    "reason": "Candidate has only 2.6 years experience, no product background, limited IR exposure (FAISS only) and lacks core ranking/text encoder skills, making them a weak but plausible fit."
+  },
+  "CAND_0012001": {
+    "label": 1,
+    "reason": "The candidate has 6+ years of software/DevOps experience but no professional IR or search\u2011engine work, lacks product\u2011company background, and has a long notice period, making them a weak fit despite some self\u2011learned ML exposure."
+  },
+  "CAND_0002904": {
+    "label": 1,
+    "reason": "Candidate has some IR exposure (embeddings, OpenSearch) and product experience at Flipkart, but only 2.9 years overall and no professional deep IR work, making them a weak fit for the senior role."
+  },
+  "CAND_0061828": {
+    "label": 1,
+    "reason": "Candidate has modest ML and vector DB exposure (Weaviate) but lacks the required 5\u20119 years, deep IR expertise, active coding signals, and product\u2011focused background for a senior search role."
+  },
+  "CAND_0081325": {
+    "label": 1,
+    "reason": "Candidate has limited (2.1 yr) experience, no demonstrated IR expertise (ranking, vector search), lacks product background, and is based in Vizag with a long notice period, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0041696": {
+    "label": 1,
+    "reason": "Candidate shows some IR-related skills (Weaviate, Haystack, sentence transformers) but lacks demonstrated ranking/search depth, product-company experience, and active coding evidence, making the fit weak."
+  },
+  "CAND_0099941": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software experience and some ML exposure (Transformers, TensorFlow) but lacks professional IR/search expertise, product\u2011focused background, and has location/notice constraints."
+  },
+  "CAND_0038878": {
+    "label": 1,
+    "reason": "Candidate has 6.5 years experience and lists advanced IR skills, but their professional work is QA and frontend, lacks demonstrated coding activity and deep IR product experience, and does not meet location or notice\u2011period preferences."
+  },
+  "CAND_0024678": {
+    "label": 1,
+    "reason": "The candidate has 7+ years of software engineering experience and active coding, but lacks demonstrated IR expertise (ranking, vector search, text encoders) and product\u2011focused ML work, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0062575": {
+    "label": 1,
+    "reason": "The candidate is a backend Java developer with 4.5 years experience, no professional IR or ranking system work, lacks product-company background, is based in Seattle with a 90\u2011day notice, and shows no active coding signals, making them a weak but somewhat ML\u2011adjacent fit."
+  },
+  "CAND_0060003": {
+    "label": 1,
+    "reason": "The candidate is a frontend engineer with ~3 years experience, no professional IR or ranking system work, lacks the required 5\u20119 years and product\u2011focused background, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0073999": {
+    "label": 1,
+    "reason": "Candidate has 6.9 years experience but only self\u2011learned ML and no professional IR or search expertise, limited product background, and lacks active coding signals."
+  },
+  "CAND_0074389": {
+    "label": 1,
+    "reason": "The candidate has 6.5 years of data engineering and light ML experience with some vector DB exposure (Qdrant) but lacks demonstrated deep IR expertise (ranking, text encoders, search backend) and does not meet location/notice preferences."
+  },
+  "CAND_0075250": {
+    "label": 1,
+    "reason": "With just 1.5 years as a QA/Java backend engineer in a services firm, no product experience, and no demonstrated IR expertise, the candidate is only a weak, ML\u2011adjacent fit."
+  },
+  "CAND_0001140": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software experience and some ML-adjacent skills (Python, LoRA), but lacks core IR expertise, product-focused search background, and does not meet location/notice constraints."
+  },
+  "CAND_0095619": {
+    "label": 3,
+    "reason": "Senior NLP engineer with deep IR expertise (ranking, LTR, BM25, Elasticsearch, vector DBs), product\u2011focused experience at Nykaa, active coding signals, and suitable notice period."
+  },
+  "CAND_0092430": {
+    "label": 1,
+    "reason": "Candidate has ML experience and some product background but lacks core IR expertise, active coding signals, and relevant search/retrieval experience."
+  },
+  "CAND_0017917": {
+    "label": 1,
+    "reason": "Has 6+ years of software experience but no professional IR/ML work, limited IR skills (only Milvus), no product background, and no active coding signals like GitHub activity."
+  },
+  "CAND_0098620": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software engineering experience and coding ability, but lacks professional IR/ML experience and core search/retrieval skills required for the role."
+  },
+  "CAND_0057468": {
+    "label": 1,
+    "reason": "Candidate has 9+ years of software engineering experience but no professional IR/ML work, only self\u2011learned AI projects, and lacks deep ranking or vector search expertise required for the role."
+  },
+  "CAND_0005538": {
+    "label": 3,
+    "reason": "Senior-level AI engineer with ~6 years of experience, strong IR expertise (ranking, vector embeddings, search backend) demonstrated at product companies (Adobe, Google), active coding signals, and relevant product impact despite non-preferred location and longer notice period."
+  },
+  "CAND_0093547": {
+    "label": 2,
+    "reason": "Candidate shows deep IR expertise, product\u2011focused ranking work and active coding, but is based in Coimbatore, unwilling to relocate, and has a 60\u2011day notice, limiting fit to a strong rather than excellent match."
+  },
+  "CAND_0011743": {
+    "label": 1,
+    "reason": "Candidate has ML-adjacent experience and some AI skills but lacks professional IR expertise, active coding signals, and product-search background required for the role."
+  },
+  "CAND_0087914": {
+    "label": 1,
+    "reason": "The candidate has 5+ years of backend product experience and some exposure to vector search (Pinecone) but lacks demonstrated deep IR expertise, active coding signals, and has a long notice period, making them a weak fit."
+  },
+  "CAND_0047632": {
+    "label": 1,
+    "reason": "Candidate has coding experience but only 4.3 years overall, no professional IR/Ranking or search backend work, and lacks product\u2011focused senior ML background required for the role."
+  },
+  "CAND_0070841": {
+    "label": 1,
+    "reason": "The candidate has 7 years of data engineering experience and some ML exposure, but lacks demonstrated IR expertise (ranking, vector search) and has limited coding activity, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0094344": {
+    "label": 1,
+    "reason": "Candidate has ~5 years of software engineering experience with some IR knowledge (BM25) and ML side projects, but lacks the required deep IR expertise, senior-level experience, and product-focused AI work."
+  },
+  "CAND_0056857": {
+    "label": 1,
+    "reason": "Candidate has 7+ years of software engineering experience and some self\u2011learned ML work, but lacks professional IR/retrieval experience, product\u2011focused background, and active coding signals required for the role."
+  },
+  "CAND_0055560": {
+    "label": 1,
+    "reason": "Candidate has only 4.3 years of software experience, no professional IR or ranking expertise, and lacks product background, making them a weak but somewhat ML\u2011adjacent fit."
+  },
+  "CAND_0035255": {
+    "label": 0,
+    "reason": "The candidate has only ~2 years of experience, no demonstrated IR or ranking expertise, and a background in cloud/mobile rather than deep-search product engineering."
+  },
+  "CAND_0057376": {
+    "label": 1,
+    "reason": "Candidate has some advanced IR knowledge and coding activity but lacks professional IR/ search experience, falls short on years, product background, and notice period"
+  },
+  "CAND_0000285": {
+    "label": 1,
+    "reason": "Candidate is a frontend/infra engineer with 3.5 years experience and only self\u2011learned ML exposure, lacking the required 5\u20119 years and deep IR expertise such as ranking or vector search."
+  },
+  "CAND_0010770": {
+    "label": 2,
+    "reason": "Strong IR and ranking experience with product\u2011focused roles, but limited visible coding activity (e.g., GitHub) and over\u2011qualified experience reduce confidence for an excellent fit."
+  },
+  "CAND_0096435": {
+    "label": 1,
+    "reason": "Mobile developer with ~4.4 years experience, lacks IR expertise and product AI background; only self\u2011learned ML side projects, not a senior IR engineer"
+  },
+  "CAND_0053817": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software/QA experience and some ML-adjacent skills (Statistical Modeling, Kubeflow) but lacks any professional IR/ search expertise, product\u2011company background, active coding evidence, and meets none of the location/notice\u2011period preferences."
+  },
+  "CAND_0028804": {
+    "label": 1,
+    "reason": "Candidate has 4.2 years of software engineering experience and self\u2011learned ML/IR skills, but lacks professional IR work, deep\u2011IR depth, sufficient experience years, active coding signals, and preferred location/notice period."
+  },
+  "CAND_0001857": {
+    "label": 1,
+    "reason": "Candidate has modest ML exposure and some BM25 knowledge but lacks the required 5+ years, deep IR expertise, product focus, and location/notice constraints for a senior search role."
+  },
+  "CAND_0027600": {
+    "label": 1,
+    "reason": "The candidate has only 2.4 years as a full\u2011stack developer, no professional IR or ranking experience, lacks active coding signals, and a long 150\u2011day notice, making them a weak but somewhat ML\u2011adjacent fit."
+  },
+  "CAND_0001089": {
+    "label": 1,
+    "reason": "While the candidate meets the experience and coding activity thresholds, they have no demonstrated IR/search expertise or product\u2011focused ML work, making them a weak fit for the role."
+  },
+  "CAND_0032397": {
+    "label": 0,
+    "reason": "Candidate has only 3.4 years experience, no professional IR or search expertise, lacks deep ML/IR skills, and does not meet location, notice\u2011period, or product background requirements."
+  },
+  "CAND_0093193": {
+    "label": 3,
+    "reason": "Senior ML engineer with 7.9 years, deep IR expertise (ranking, encoders, vectors, search backend), product experience at Netflix, active coding signals, meeting core skill requirements."
+  },
+  "CAND_0088781": {
+    "label": 1,
+    "reason": "Has 7 years software experience and some vector DB (Qdrant) exposure, but no professional IR/ML work, core ranking or text encoder skills, and primary role is frontend with weak coding signals."
+  },
+  "CAND_0081057": {
+    "label": 1,
+    "reason": "Candidate has ~3 years of data engineering experience with some semantic search exposure but lacks the required 5\u20119 years and deep IR expertise (ranking, vector encodings) needed for the senior search role."
+  },
+  "CAND_0093103": {
+    "label": 1,
+    "reason": "Candidate has some IR exposure (pgvector, LlamaIndex) but only 3.1 years experience, QA-focused roles, no product ML background, and lacks required senior IR depth."
+  },
+  "CAND_0055443": {
+    "label": 1,
+    "reason": "Candidate has only 1 year experience, a QA/backend title, and limited IR exposure, lacking the senior depth and product background required for the role"
+  },
+  "CAND_0011198": {
+    "label": 1,
+    "reason": "7+ years of software engineering experience but no professional IR or search expertise, product background, or relevant location/notice period; only self\u2011learned ML side projects."
+  },
+  "CAND_0091534": {
+    "label": 3,
+    "reason": "Senior AI engineer with extensive product experience at Flipkart and Adobe, actively coding, and demonstrated deep IR expertise in ranking, embedding-based retrieval, and search back\u2011ends."
+  },
+  "CAND_0028723": {
+    "label": 1,
+    "reason": "Candidate has 8+ years experience and some IR\u2011related skills (Vector Search, BM25) but lacks professional ML/IR depth, product background, active coding evidence, and meets none of the location/notice preferences."
+  },
+  "CAND_0086827": {
+    "label": 1,
+    "reason": "Has 6.5 years experience but background is mobile QA/Java development with only intermediate BM25 skill, no deep IR expertise, no product-company experience, no active coding signals, long notice period, and not in preferred location."
+  },
+  "CAND_0008789": {
+    "label": 1,
+    "reason": "With only ~2 years of experience and modest IR exposure (Learning to Rank, OpenSearch) the candidate lacks the senior\u2011level depth and years required for the role."
+  },
+  "CAND_0062096": {
+    "label": 1,
+    "reason": "The candidate has 8 years of data\u2011engineering and backend experience with some vector\u2011search skills, but lacks demonstrated depth in ranking systems, text encoders, or search backend development required for a senior IR role."
+  },
+  "CAND_0004992": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years of software engineering experience but no professional IR or search\u2011related work, only self\u2011learned ML side projects, and comes from services firms with a long notice period, making them a weak fit for the core requirements."
+  },
+  "CAND_0082190": {
+    "label": 1,
+    "reason": "With just 1.4 years of QA-focused work, no demonstrated IR or ranking expertise, and no product\u2011engineer background, the candidate is only marginally relevant as an ML\u2011adjacent profile."
+  },
+  "CAND_0045903": {
+    "label": 1,
+    "reason": "Has ML education and 6+ years of software experience, but no professional IR/ search work, limited coding activity, long notice period, and primarily services/QA roles."
+  },
+  "CAND_0083837": {
+    "label": 1,
+    "reason": "Candidate has only 2 years experience as a QA/Java backend engineer, no professional IR or ranking system work, limited coding activity, and lacks the required deep search expertise."
+  },
+  "CAND_0089563": {
+    "label": 1,
+    "reason": "Candidate has some IR\u2011related tools (Elasticsearch, LlamaIndex) and ML exposure but lacks professional experience in ranking/text encoders, product\u2011company background, and has a long notice period, making the fit weak."
+  },
+  "CAND_0001610": {
+    "label": 2,
+    "reason": "Candidate has solid product experience, strong IR skills (semantic search, ranking, vector DBs) and active coding, but only ~5 years experience and a 90\u2011day notice period, falling short of an excellent senior fit."
+  },
+  "CAND_0018378": {
+    "label": 1,
+    "reason": "Candidate has 5+ years experience and some self\u2011learned IR/LLM skills, but lacks professional ML/IR work, active coding evidence, product\u2011focused AI experience, and meets none of the location or notice\u2011period preferences."
+  },
+  "CAND_0019480": {
+    "label": 3,
+    "reason": "7+ years of IR-focused ML work, strong product experience, active coding signals, and deep expertise in ranking, embeddings, and search backends despite longer notice period and non-preferred location"
+  },
+  "CAND_0003232": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering and ML background but lacks professional experience or demonstrated skills in core IR areas (ranking, vector search) required for the role, and also has location and notice period mismatches."
+  },
+  "CAND_0017186": {
+    "label": 1,
+    "reason": "Has 7+ years of data/ML experience and some vector search exposure (Qdrant, LangChain), but lacks demonstrated deep IR expertise (ranking, text encoders) and primary work is data pipelines rather than search product development."
+  },
+  "CAND_0006567": {
+    "label": 3,
+    "reason": "Senior AI engineer with ~8 years experience, strong product\u2011focused IR work (ranking, vector encoders, search backend) at Meta and Razorpay, active coding signals, located in Noida, meeting all core requirements despite a 60\u2011day notice period."
+  },
+  "CAND_0027548": {
+    "label": 1,
+    "reason": "Candidate has IR knowledge and some ML exposure but lacks professional IR experience, product background, and meets none of the location/notice period preferences."
+  },
+  "CAND_0091631": {
+    "label": 1,
+    "reason": "Candidate has ~5 years of full\u2011stack Java experience with self\u2011learned ML and some IR knowledge (BM25), but lacks professional IR/Ranking work, product\u2011focused ML experience, and meets only marginally the experience and location requirements."
+  },
+  "CAND_0088577": {
+    "label": 1,
+    "reason": "Candidate has backend software experience and some ML/NLP knowledge but lacks professional IR expertise, active coding signals, and has a long notice period, making them a weak fit."
+  },
+  "CAND_0065787": {
+    "label": 1,
+    "reason": "Candidate is a Java developer with some ML-adjacent experience (Pinecone, LoRA) but lacks deep IR expertise, product background, and active coding signals required for the senior search role."
+  },
+  "CAND_0017725": {
+    "label": 1,
+    "reason": "Candidate has only 1 year experience, a QA/Java developer role in a services firm, and lacks deep IR expertise (ranking, text encoders, search backend), though they list some ML and Pinecone skills, making them a weak but plausible fit."
+  },
+  "CAND_0045280": {
+    "label": 1,
+    "reason": "Has borderline experience and some vector search skills, but lacks professional IR depth, senior ML engineering experience, and meets none of the location/notic period preferences."
+  },
+  "CAND_0092178": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years experience and some self\u2011learned IR knowledge (BM25, NLP) but lacks professional ML/IR work, deep ranking or vector search experience, and does not meet product\u2011focused, location, or notice\u2011period preferences."
+  },
+  "CAND_0087317": {
+    "label": 1,
+    "reason": "The candidate has ~5 years of software engineering experience and some self\u2011learned RAG/ML exposure, but lacks the required deep IR expertise, falls short of the 5\u20119 year range, and does not have product\u2011focused ML experience."
+  },
+  "CAND_0014918": {
+    "label": 1,
+    "reason": "The candidate has ~5 years of backend/data engineering experience with limited ML exposure but no demonstrated IR expertise (ranking, vector search) and falls short on the required experience range and notice period, making them a weak fit."
+  },
+  "CAND_0036299": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering experience and an ML-focused degree, but lacks professional IR/ search expertise, product-company background, and relevant IR skills, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0001022": {
+    "label": 1,
+    "reason": "The candidate has 8+ years of software and DevOps experience and some self\u2011studied ML skills, but lacks professional experience or demonstrated expertise in core IR areas such as ranking, vector search, or text encoders, and shows no active coding signals."
+  },
+  "CAND_0061600": {
+    "label": 1,
+    "reason": "Candidate has 7.5 years of data engineering/ML work and some IR exposure (embeddings, intermediate IR skill), but lacks demonstrated deep IR experience (ranking, vector search backends) and has limited active coding signals, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0031979": {
+    "label": 1,
+    "reason": "Candidate has sufficient experience but only ML\u2011adjacent skills (e.g., object detection) and no demonstrated IR expertise, with a services\u2011focused background and long notice period."
+  },
+  "CAND_0095480": {
+    "label": 1,
+    "reason": "Candidate is a .NET developer with 2.3 years experience and only self\u2011learned ML exposure; lacks professional IR depth, required years, and product\u2011focused search expertise."
+  },
+  "CAND_0037980": {
+    "label": 3,
+    "reason": "Senior ML engineer with 9 years of experience, strong product-company background (Salesforce, Verloop.io), deep IR expertise (ranking, BM25, vector search, text encoders) and active coding signals, meeting all core requirements."
+  },
+  "CAND_0033972": {
+    "label": 0,
+    "reason": "Candidate is a QA/DevOps engineer with no professional IR or ranking experience, lacks deep search/retrieval skills, and does not meet product or location preferences."
+  },
+  "CAND_0070429": {
+    "label": 1,
+    "reason": "The candidate has the required years of experience and some ML/NLP exposure, but lacks professional IR expertise (ranking, vector search) and product\u2011focused ML work, and has a long notice period and no willingness to relocate."
+  },
+  "CAND_0023770": {
+    "label": 1,
+    "reason": "Candidate has 5.9 years of software engineering experience and an advanced skill in Learning to Rank, but lacks professional IR depth (text encoders, vector search), product AI background, active coding signals, and is located outside preferred locations with a long notice period."
+  },
+  "CAND_0026502": {
+    "label": 0,
+    "reason": "Candidate has only 1 year of software engineering experience, no professional AI/ML or IR work, lacks deep IR skills, and does not meet seniority, location, or notice period requirements."
+  },
+  "CAND_0086746": {
+    "label": 1,
+    "reason": "The candidate is a junior full\u2011stack developer with ~1\u202fyear experience and only self\u2011studied ML/RAG exposure; lacks the 5\u20119 years, deep IR expertise, and product\u2011focused background required for the senior search role."
+  },
+  "CAND_0065821": {
+    "label": 1,
+    "reason": "Candidate has 3.2 years of data engineering/ML\u2011adjacent experience but lacks the required IR depth (ranking, vector search) and does not meet the 5\u20119 year experience, preferred location, or short notice\u2011period criteria."
+  },
+  "CAND_0070990": {
+    "label": 1,
+    "reason": "Candidate has 7+ years of software experience and some ML exposure (PyTorch, CNN, RAG side project) but lacks demonstrated IR expertise, active coding signals, product\u2011AI background, and preferred location/notice period."
+  },
+  "CAND_0040425": {
+    "label": 1,
+    "reason": "Candidate has 9 years of software/devops experience and some self\u2011learned ML exposure, but lacks professional IR expertise, product\u2011AI background, and relevant location/notices, making the fit weak."
+  },
+  "CAND_0048323": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering experience and some ML exposure (YOLO, image classification) but no IR or search expertise, limited coding activity, and misaligned notice period and location."
+  },
+  "CAND_0094251": {
+    "label": 1,
+    "reason": "The candidate has 7+ years of data\u2011engineering and backend experience with some ML exposure and an intermediate semantic search skill, but lacks demonstrated deep IR expertise (ranking, vector search, search backend) and does not meet location/notice\u2011period preferences."
+  },
+  "CAND_0027369": {
+    "label": 1,
+    "reason": "The candidate has only 3 years of QA/cloud experience, no professional IR or ranking system work, limited ML exposure, and mismatches on location and notice period, making them a weak, ML\u2011adjacent fit."
+  },
+  "CAND_0076243": {
+    "label": 1,
+    "reason": "Candidate has 5.7 years of software engineering experience and some self\u2011learned IR/semantic search knowledge, but lacks professional deep\u2011IR work, product\u2011focused search experience, and has location/notice constraints."
+  },
+  "CAND_0081078": {
+    "label": 1,
+    "reason": "Has 9 years experience and some intermediate vector search/Elasticsearch skills, but lacks professional IR/ML work, deep IR depth, product background, and active coding signals, making the fit weak."
+  },
+  "CAND_0039754": {
+    "label": 3,
+    "reason": "Senior AI engineer with extensive hands\u2011on IR experience (ranking pipelines, hybrid dense/sparse retrieval, embeddings, search back\u2011ends) at product\u2011scale companies (Meta, Apple), active coding signals, product background, and meets notice\u2011period/location preferences."
+  },
+  "CAND_0026796": {
+    "label": 1,
+    "reason": "The candidate has ~4 years of software experience and some self\u2011learned ML/RAG exposure, but lacks the required 5\u20119 years, core IR expertise, and active coding signals for a senior search & retrieval role."
+  },
+  "CAND_0002781": {
+    "label": 1,
+    "reason": "Candidate has 7.5 years of data engineering and backend experience with some ML exposure, but lacks demonstrated deep IR expertise, active coding signals, and preferred product/location attributes."
+  },
+  "CAND_0072791": {
+    "label": 1,
+    "reason": "The candidate is a 3.5\u2011year full\u2011stack developer with modest ML exposure (scikit\u2011learn, LangChain, RAG side project) but lacks the required 5\u20119 years experience and core IR expertise such as ranking, vector search, or search backend development."
+  },
+  "CAND_0089272": {
+    "label": 0,
+    "reason": "With only 3.8 years in frontend and DevOps roles, no professional IR or ranking experience, lacking deep IR skills, long 120\u2011day notice, and not located in the preferred hubs, the candidate does not meet the senior AI/ML search requirements."
+  },
+  "CAND_0053766": {
+    "label": 1,
+    "reason": "Candidate has strong backend Java experience and some product exposure, but lacks professional IR/ML experience, core search/retrieval skills, and active coding signals needed for the senior AI/ML role."
+  },
+  "CAND_0067648": {
+    "label": 1,
+    "reason": "Candidate has 5 years of software/devops experience and some self\u2011learned ML/RAG knowledge but no professional IR depth (ranking, vector search) or product\u2011focused ML work, and is located in Indore with a 60\u2011day notice."
+  },
+  "CAND_0048652": {
+    "label": 1,
+    "reason": "Candidate has 8 years experience but primarily in mobile and infra roles, limited professional ML work, only intermediate vector search skill, no active coding signals, and mismatched location/notice period."
+  },
+  "CAND_0050603": {
+    "label": 1,
+    "reason": "The candidate has only 3.3 years of software experience, a mobile/frontend focus, no professional IR or search expertise, and lacks the required seniority and product\u2011engineer background."
+  },
+  "CAND_0098319": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years of software engineering experience and some self\u2011learned ML exposure, but lacks professional IR expertise, product\u2011focused ML work, and the required search/retrieval skill set."
+  },
+  "CAND_0089987": {
+    "label": 1,
+    "reason": "Candidate has only ~3.6 years experience, limited IR depth (only learning-to-rank skill) and no evidence of work on ranking systems, text encoders, or search back\u2011ends, making them a weak but adjacent fit."
+  },
+  "CAND_0020968": {
+    "label": 1,
+    "reason": "Candidate has 8 years of software/QA experience but no professional AI/ML or IR work, lacks core IR skills, and has a long notice period, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0063089": {
+    "label": 1,
+    "reason": "Candidate has 5.9 years of software experience and some ML-adjacent skills (recommendation systems, prompt engineering) but lacks professional IR expertise, deep search/retrieval work, and has a QA/DevOps focus rather than product ML engineering."
+  },
+  "CAND_0081232": {
+    "label": 1,
+    "reason": "Candidate has 5.7 years experience and some Elasticsearch exposure, but lacks professional IR depth, product\u2011focused ML work, active coding signals, and meets few of the core requirements."
+  },
+  "CAND_0056188": {
+    "label": 1,
+    "reason": "The candidate has 8+ years of software and DevOps experience and some self\u2011studied ML skills, but lacks professional IR/retrieval work, product\u2011company background, and the preferred location/notice period."
+  },
+  "CAND_0073207": {
+    "label": 1,
+    "reason": "Candidate has 5+ years of software experience but no professional ML or IR work, lacks core IR skills, and is in a QA/Android role with a long notice period, making them a weak fit."
+  },
+  "CAND_0047495": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering and some ML exposure (TensorFlow, BentoML) but lacks any demonstrated IR expertise, product-focused experience, and is not located or willing to relocate to the preferred sites."
+  },
+  "CAND_0037000": {
+    "label": 3,
+    "reason": "Senior ML engineer with ~6 years experience, strong IR expertise (ranking, embeddings, vector search), product background at Unacademy and CRED, active coding signals, located in Noida with a 15\u2011day notice period."
+  },
+  "CAND_0066352": {
+    "label": 0,
+    "reason": "The candidate is a data engineer with 4 years experience, lacks the required IR expertise (ranking, text encoders, search backend), and does not meet the seniority, location, or notice\u2011period preferences."
+  },
+  "CAND_0040844": {
+    "label": 1,
+    "reason": "The candidate has 3.5 years of software engineering experience and some NLP exposure, but lacks the required 5\u20119 years, deep IR expertise, product\u2011company background, and a short notice period."
+  },
+  "CAND_0041608": {
+    "label": 1,
+    "reason": "Candidate has only 2 years of mobile development experience, no professional IR or search expertise, and lacks the required 5\u20119 years and deep IR skills, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0042144": {
+    "label": 1,
+    "reason": "Candidate has 5+ years experience and some self\u2011taught IR knowledge, but lacks professional deep IR work, product background, and is based outside the preferred locations."
+  },
+  "CAND_0054913": {
+    "label": 1,
+    "reason": "The candidate is a 3\u2011year Java/DevOps engineer with limited ML exposure (LLMs, learning\u2011to\u2011rank) but lacks the required 5\u20119 years and deep IR expertise such as ranking systems or vector search, making them a weak but plausible fit."
+  },
+  "CAND_0077594": {
+    "label": 1,
+    "reason": "Candidate has 8+ years experience but works as QA engineer with mobile focus, lacks professional IR/Ranking experience and active coding signals, only shows side\u2011project ML interest (LlamaIndex) making them a weak but plausible fit."
+  },
+  "CAND_0011678": {
+    "label": 0,
+    "reason": "The candidate is a DevOps/backend engineer with no professional experience in IR, ranking or vector search, lacks active coding signals, and does not meet the core ML/IR requirements."
+  },
+  "CAND_0061257": {
+    "label": 3,
+    "reason": "Senior staff ML engineer with 8 years, strong IR expertise (ranking, search infrastructure, vector representations) and product experience at LinkedIn, active coding signals, and suitable location/notice period."
+  },
+  "CAND_0068351": {
+    "label": 3,
+    "reason": "Senior ML engineer with 6+ years, strong product experience, and deep IR expertise (ranking, text encoders, vector search, Elasticsearch/Qdrant) plus active coding background."
+  },
+  "CAND_0004146": {
+    "label": 1,
+    "reason": "Candidate has modest ML exposure and coding activity but lacks the required 5\u20119 years experience and core IR expertise (ranking, vector search) and is not from a product background."
+  },
+  "CAND_0091552": {
+    "label": 1,
+    "reason": "Candidate has solid data engineering and some ML/recommendation experience but lacks demonstrated deep IR expertise (ranking, vector search) and primary focus is on pipelines, making them a weak fit for the core search & retrieval role."
+  },
+  "CAND_0058470": {
+    "label": 1,
+    "reason": "Candidate has 6 years of software engineering experience and some self\u2011learned ML work, but lacks professional IR expertise (ranking, vector search, search backend) required for the role."
+  },
+  "CAND_0046834": {
+    "label": 1,
+    "reason": "Candidate has 5+ years experience and some Pinecone/vector DB exposure, but no professional IR or ranking system work, product background, active coding signals, or short notice period, making the fit weak."
+  },
+  "CAND_0016475": {
+    "label": 1,
+    "reason": "Candidate is a data engineer with ~3 years experience and some ML exposure, but lacks the required 5-9 years and deep IR expertise (ranking, vector search) needed for the role."
+  },
+  "CAND_0067106": {
+    "label": 1,
+    "reason": "Has 5.8 years of backend and data engineering experience with some vector search exposure, but lacks deep IR expertise and product-company background, and is based in the US with no relocation intent."
+  },
+  "CAND_0090394": {
+    "label": 1,
+    "reason": "The candidate has a plausible but weak fit for the Senior AI/ML Engineer Search & Retrieval role due to their lack of professional experience in AI/ML and deep IR skills, despite having a strong software engineering background and some self-learned AI/ML knowledge."
+  },
+  "CAND_0028837": {
+    "label": 1,
+    "reason": "The candidate has a plausible but weak fit for the Senior AI/ML Engineer Search & Retrieval role due to their limited experience in AI/ML and lack of core IR skills, despite having a strong software engineering background and some self-learned AI/ML knowledge."
+  },
+  "CAND_0069150": {
+    "label": 1,
+    "reason": "The candidate has a plausible but weak fit for the Senior AI/ML Engineer Search & Retrieval role due to their limited professional experience in AI/ML and lack of core IR skills, despite having some relevant skills and a strong software engineering background."
+  },
+  "CAND_0052923": {
+    "label": 1,
+    "reason": "The candidate has a plausible background with ML-adjacent experience and some relevant skills like Haystack and Qdrant, but lacks deep IR skills and a strong product background, making them a weak fit for the Senior AI/ML Engineer Search & Retrieval role."
+  },
+  "CAND_0037770": {
+    "label": 1,
+    "reason": "Has 5+ years and some IR skills (BM25, Learning to Rank) but lacks deep IR experience, product-search background, active coding evidence, and has location/notice constraints."
+  },
+  "CAND_0050788": {
+    "label": 1,
+    "reason": "Candidate has modest IR exposure (BM25, RAG) and ML experience but only 2.8 years overall, no product background, and lacks the deep IR expertise and seniority required for the role."
+  },
+  "CAND_0006610": {
+    "label": 1,
+    "reason": "Candidate has 5.5 years of software engineering experience and some FAISS exposure, but lacks professional IR depth (ranking, text encoders, search backend) and product\u2011focused ML work, with a long notice period and non\u2011preferred location."
+  },
+  "CAND_0003616": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years of software experience but no professional IR/ML work, lacks core search/retrieval skills, product background, active coding signals, and preferred location/notice period"
+  },
+  "CAND_0034386": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering experience and some exposure to vector search (Weaviate) but lacks professional IR depth, product\u2011focused ML work, and preferred location/notice period, making them a weak fit for the senior search & retrieval role."
+  },
+  "CAND_0095388": {
+    "label": 1,
+    "reason": "Candidate has backend/data engineering experience and some ML exposure but lacks the required IR depth (ranking, vector search) and falls short of the 5\u2011year experience threshold."
+  },
+  "CAND_0090900": {
+    "label": 1,
+    "reason": "Senior data engineer with modest ML exposure but no evidence of deep IR skills, product-search experience, or preferred location/notice period."
+  },
+  "CAND_0040946": {
+    "label": 1,
+    "reason": "Candidate has 6 years ML experience and some IR\u2011related skills (Qdrant, learning to rank) plus product background, but lacks demonstrated deep ranking/search expertise required for the role."
+  },
+  "CAND_0049051": {
+    "label": 1,
+    "reason": "The candidate has only 1.6 years of experience, a cloud engineer title, and limited professional IR exposure (Haystack skill) but lacks the required 5\u20119 years, deep IR expertise, and product\u2011focused background for a senior role."
+  },
+  "CAND_0020149": {
+    "label": 1,
+    "reason": "Candidate has 8.9 years of software experience and some self\u2011learned ML skills, but lacks professional IR expertise, active coding signals, and the preferred location/notice period for a senior search\u2011focused role."
+  },
+  "CAND_0071115": {
+    "label": 3,
+    "reason": "Senior engineer with strong IR expertise (BM25, embeddings, semantic search, Weaviate), active coding signals, and product experience at Meta, making them an excellent fit."
+  },
+  "CAND_0039299": {
+    "label": 1,
+    "reason": "Candidate has extensive software engineering experience but lacks professional IR/ML work, active coding signals, and product background required for a senior search & retrieval role."
+  },
+  "CAND_0093331": {
+    "label": 3,
+    "reason": "Candidate has extensive IR experience (semantic search, embeddings, FAISS, BM25), active coding signals, product background at InMobi, and meets notice/relocation preferences, making them an excellent fit despite being over\u2011qualified in years"
+  },
+  "CAND_0037893": {
+    "label": 1,
+    "reason": "Candidate has 3.5 years of backend Java experience and only self\u2011studied ML/RAG side projects, lacking professional IR expertise, required seniority, product background, and active coding signals."
+  },
+  "CAND_0081485": {
+    "label": 0,
+    "reason": "The candidate has only 1.9 years experience as a QA Engineer in an IT services firm, no deep IR or search expertise, no product background, and does not meet seniority, location, or notice\u2011period requirements."
+  },
+  "CAND_0017337": {
+    "label": 1,
+    "reason": "Candidate has solid data engineering and some ML experience with product-company background, but lacks the required deep IR expertise (ranking, vector search) and has a long notice period and non-preferred location."
+  },
+  "CAND_0057711": {
+    "label": 1,
+    "reason": "Candidate has ML-adjacent experience and a side RAG project but lacks professional IR depth, product background, active coding signals, and meets none of the location/notice preferences."
+  },
+  "CAND_0065370": {
+    "label": 1,
+    "reason": "Candidate has only 1.4 years of experience, no IR-specific skills (ranking, vector search, etc.), works at a services firm, and lacks the seniority and product background required for the role."
+  },
+  "CAND_0073935": {
+    "label": 1,
+    "reason": "The candidate has only ~3 years of experience and primarily data\u2011engineering roles, with limited deep IR expertise despite some OpenSearch and embedding skills, making them a weak but plausible fit."
+  },
+  "CAND_0057794": {
+    "label": 1,
+    "reason": "Meera has modest software engineering experience and some ML exposure, but lacks the required seniority and deep IR expertise (ranking, vector search) needed for the role."
+  },
+  "CAND_0057369": {
+    "label": 1,
+    "reason": "The candidate shows some IR exposure (Weaviate, Milvus) but only 3.4 years experience, CV-focused role, no product background, located in Kolkata with a 120\u2011day notice, making them a weak fit for the senior IR role."
+  },
+  "CAND_0068750": {
+    "label": 1,
+    "reason": "Candidate has 8.5 years of software engineering experience but only self\u2011learned ML/RAG exposure, no professional IR depth (ranking, encoders, search backend) and lacks active coding signals, making the fit weak."
+  },
+  "CAND_0020481": {
+    "label": 1,
+    "reason": "The candidate is a data engineer with only 2.4 years experience, no demonstrated IR/ranking or vector search expertise, and no product-company background, making them a weak but somewhat ML\u2011adjacent fit."
+  },
+  "CAND_0030254": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of data engineering and light ML experience with some Pinecone exposure, but no demonstrated deep IR expertise (ranking, text encoders, search backend), lacks product\u2011company background, and is based in Berlin with a 90\u2011day notice period."
+  },
+  "CAND_0022334": {
+    "label": 1,
+    "reason": "Candidate has only 2 years of experience, a services\u2011firm background, limited IR expertise and no product or senior ML experience, making them a weak but plausible fit."
+  },
+  "CAND_0041302": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software engineering experience and some recommendation system exposure, but lacks professional IR/ML work, deep search expertise, product-focused ML background, and preferred location/notice period."
+  },
+  "CAND_0025239": {
+    "label": 1,
+    "reason": "Candidate has 5.5 years of software engineering experience and some exposure to vector databases (Milvus, Pinecone), but lacks professional IR/ML work, active coding signals, and product-focused AI experience, making the fit weak."
+  },
+  "CAND_0065001": {
+    "label": 1,
+    "reason": "The candidate has 7 years of software engineering experience and active coding signals, but lacks professional experience or demonstrated skills in information retrieval, ranking, or vector search, and has a long notice period and non\u2011preferred location."
+  },
+  "CAND_0076179": {
+    "label": 1,
+    "reason": "Candidate has 5.8 years of software/DevOps experience with some ML-adjacent exposure (Milvus, MLOps) but lacks professional IR depth, core ranking/text\u2011encoder skills, active coding signals, and has a 120\u2011day notice period."
+  },
+  "CAND_0066405": {
+    "label": 1,
+    "reason": "Candidate shows some IR knowledge but lacks professional deep\u2011IR experience, product\u2011focused search work, and has location/notice constraints making them a weak fit."
+  },
+  "CAND_0058381": {
+    "label": 1,
+    "reason": "The candidate has some IR-related skills (Elasticsearch, vector search) but only 4.6 years experience, lacks deep ranking expertise, and shows no active coding signals, making the fit weak."
+  },
+  "CAND_0095610": {
+    "label": 1,
+    "reason": "Candidate has solid software engineering experience and some self\u2011learned ML work, but lacks demonstrated deep IR expertise (ranking, vector search) and product\u2011focused ML experience required for the role."
+  },
+  "CAND_0017780": {
+    "label": 1,
+    "reason": "The candidate has 3 years of data engineering experience and some ML exposure, but lacks the required 5\u20119 years and deep IR expertise (ranking, vector search, etc.) needed for the role."
+  },
+  "CAND_0035104": {
+    "label": 1,
+    "reason": "Has 5.5 years of software engineering in IT services and a self\u2011reported recommendation systems skill, but lacks professional IR depth, product\u2011company experience, active coding signals, and does not meet location or notice\u2011period preferences."
+  },
+  "CAND_0063888": {
+    "label": 1,
+    "reason": "Candidate has only 2.4 years of experience, no active coding portfolio, and limited IR expertise (BM25 only) without the deep IR depth or product-search background required for the role."
+  },
+  "CAND_0094778": {
+    "label": 1,
+    "reason": "The candidate has solid software engineering experience and some self\u2011learned ML/RAG exposure, but lacks professional IR expertise, product\u2011company background, and the required coding activity for deep search/retrieval work."
+  },
+  "CAND_0003582": {
+    "label": 1,
+    "reason": "The candidate has 8+ years of software/DevOps experience and some ML exposure, but lacks any demonstrated IR/retrieval expertise, product\u2011focused work, active coding signals, and has a long notice period, making them a weak fit for the senior search role."
+  },
+  "CAND_0015361": {
+    "label": 1,
+    "reason": "Candidate has only 1.6 years of DevOps/backend experience, no product background, lacks deep IR expertise (ranking, vector search), and exceeds the preferred notice period, making them a weak but somewhat ML\u2011adjacent fit."
+  },
+  "CAND_0049630": {
+    "label": 1,
+    "reason": "Candidate has a software/DevOps background with only 2.2 years experience and limited ML side\u2011projects, lacking the required deep IR expertise, seniority, and product experience."
+  },
+  "CAND_0021679": {
+    "label": 1,
+    "reason": "Candidate has limited (2.6\u202fyr) experience, a QA/frontend role in a services firm, no professional IR or ranking system work, and a 60\u2011day notice, making them a weak but ML\u2011adjacent fit."
+  },
+  "CAND_0028787": {
+    "label": 1,
+    "reason": "Candidate has IR-related skills and 9+ years experience but lacks professional ML/IR work, active coding evidence, and product-focused AI experience, making the fit weak."
+  },
+  "CAND_0025193": {
+    "label": 1,
+    "reason": "Candidate has the required experience length and basic coding background, but no professional IR or ranking system work, no active coding signals, and lacks product\u2011focused ML experience, making them a weak fit."
+  },
+  "CAND_0061722": {
+    "label": 1,
+    "reason": "Candidate has strong data\u2011engineering background and mentions Milvus, but lacks proven IR expertise (ranking, text encoders, search backend), product\u2011focused ML experience, and does not meet preferred location or notice\u2011period criteria."
+  },
+  "CAND_0076813": {
+    "label": 1,
+    "reason": "The candidate is a DevOps engineer with ~4.3 years experience, some ML\u2011adjacent skills (reinforcement learning, deep learning) but lacks the required IR expertise, product background, senior experience level, and preferred location/notice period."
+  },
+  "CAND_0085444": {
+    "label": 1,
+    "reason": "Candidate has 6+ years of software engineering experience but no professional IR/ML work, lacks deep search expertise, and comes from services firms with a long notice period."
+  },
+  "CAND_0085208": {
+    "label": 1,
+    "reason": "The candidate is a junior .NET developer with ~2 years experience and only self\u2011studied ML skills, lacking any IR\u2011specific expertise or senior product\u2011engineer background required for the role."
+  },
+  "CAND_0075297": {
+    "label": 1,
+    "reason": "Candidate has 5.5 years experience and some vector search skills (FAISS, Transformers) but lacks professional IR depth, ranking experience, and product-focused ML work, with a QA/DevOps background and unsuitable location/notice period."
+  },
+  "CAND_0060642": {
+    "label": 1,
+    "reason": "Candidate has only 3 years of software engineering experience in a services firm, lacks professional IR expertise (ranking, text encoders, search backend), and does not meet the required experience, product background, or notice\u2011period criteria."
+  },
+  "CAND_0042243": {
+    "label": 1,
+    "reason": "Candidate has some self\u2011taught IR skills (FAISS, vector search) but lacks professional ML/IR experience, product background, and active coding signals, and has a long notice period."
+  },
+  "CAND_0092842": {
+    "label": 1,
+    "reason": "Candidate has ~4 years of backend QA experience in an IT services firm, no professional IR or ML work, lacks deep IR skills, and does not meet the required experience or product background criteria."
+  },
+  "CAND_0080299": {
+    "label": 1,
+    "reason": "The candidate has 5+ years of data engineering experience with some vector DB (pgvector) exposure, but lacks demonstrated deep IR skills such as ranking systems or text encoders, and has a long 90\u2011day notice and non\u2011preferred location."
+  },
+  "CAND_0064664": {
+    "label": 1,
+    "reason": "The candidate has under\u2011required experience (4.4\u202fyrs), limited demonstrated deep IR work and no visible coding activity, though they have some relevant NLP/RAG skills and product\u2011company exposure."
+  },
+  "CAND_0066123": {
+    "label": 1,
+    "reason": "Has 9 years of software/QA experience and some self\u2011learned ML exposure, but lacks professional IR/Ranking or vector search work and core ML engineering depth required for the role."
+  },
+  "CAND_0063670": {
+    "label": 0,
+    "reason": "The candidate has only 3.7 years experience, a DevOps title, no professional IR or ML work, lacks deep search expertise, and does not meet the senior AI/ML product background required."
+  },
+  "CAND_0086002": {
+    "label": 1,
+    "reason": "Software engineer with 6+ years in mobile/backend roles, limited self\u2011studied AI/ML and only intermediate Elasticsearch exposure, no professional IR experience, no product\u2011focused AI work, and no active coding signals."
+  },
+  "CAND_0078448": {
+    "label": 1,
+    "reason": "The candidate is a junior software engineer with ~2 years experience, limited ML exposure (PyTorch, LlamaIndex) and no demonstrated IR expertise or product\u2011focused background, falling short of the senior IR skill and experience requirements."
+  },
+  "CAND_0006449": {
+    "label": 1,
+    "reason": "Candidate has only 4.1 years (below the 5\u20119 year requirement), primarily front\u2011end/full\u2011stack experience, limited professional IR expertise (only intermediate vector search and no ranking or search backend work), and is based in Toronto with a 120\u2011day notice, making the fit weak despite some ML exposure."
+  },
+  "CAND_0022865": {
+    "label": 0,
+    "reason": "The candidate has only 2.2 years of backend/data engineering experience and no demonstrated IR or search expertise, making them unrelated to the senior AI/ML search & retrieval role."
+  },
+  "CAND_0067201": {
+    "label": 2,
+    "reason": "Candidate has 6 years ML experience with advanced FAISS/Milvus skills and product exposure at Nykaa, but lacks clear ranking/retrieval system depth and is located in Sydney with a 90\u2011day notice period."
+  },
+  "CAND_0055992": {
+    "label": 3,
+    "reason": "Senior AI engineer with extensive product\u2011focused IR experience (ranking, embeddings, FAISS, RAG), strong coding activity, and a track record of shipping search/retrieval systems, making him an excellent fit despite being based in Sydney."
+  },
+  "CAND_0095140": {
+    "label": 1,
+    "reason": "Candidate has 5 years of data engineering experience and lists IR/Vector Search skills, but lacks demonstrated deep IR work, product search background, active coding signals, and is not located or willing to relocate to the preferred sites."
+  },
+  "CAND_0013423": {
+    "label": 1,
+    "reason": "Candidate has 6+ years experience and some Haystack IR exposure, but lacks professional ML/IR depth, active coding signals, product ML background, and has a long notice period and non-preferred location."
+  },
+  "CAND_0041683": {
+    "label": 1,
+    "reason": "Candidate has 5+ years of software engineering experience but no professional IR or search expertise, core IR skills are missing, and their background is mobile/frontend rather than product search engineering."
+  },
+  "CAND_0042016": {
+    "label": 1,
+    "reason": "Candidate is a junior software engineer with limited (2\u202fyr) experience, no professional IR or ranking expertise, and only side\u2011project ML exposure, making them a weak but plausible fit."
+  },
+  "CAND_0033475": {
+    "label": 1,
+    "reason": "The candidate has ~3.6 years of software engineering experience with some ML self\u2011learning, but lacks the required 5\u20119 years, deep IR expertise, and product\u2011focused background for a senior search & retrieval role."
+  },
+  "CAND_0058642": {
+    "label": 0,
+    "reason": "Candidate has 9 years of backend/QA experience but no professional ML or IR work, lacks deep IR skills, product background, active coding signals, and is not located or willing to relocate to the preferred sites."
+  },
+  "CAND_0084451": {
+    "label": 1,
+    "reason": "Candidate has 5 years of data engineering experience with some ML exposure and pgvector skills, but lacks demonstrated deep IR expertise, search ranking work, product-search background, and has location/notice constraints."
+  },
+  "CAND_0098504": {
+    "label": 1,
+    "reason": "The candidate has solid software engineering experience and some self\u2011learned ML exposure, but lacks professional experience or demonstrated skills in core IR areas such as ranking, vector search, or search back\u2011ends, and has no product\u2011focused background."
+  },
+  "CAND_0077763": {
+    "label": 1,
+    "reason": "Candidate has 9 years experience but focuses on DevOps/infrastructure with no demonstrated IR or search expertise, limited ML exposure, and lacks active coding signals and preferred location/notice period."
+  },
+  "CAND_0080663": {
+    "label": 1,
+    "reason": "A Java developer with 6.6 years experience, showing only self\u2011learned ML interest and no professional IR or search expertise, product background, or preferred location/notice period."
+  }
+}

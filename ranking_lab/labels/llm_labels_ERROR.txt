@@ -1,0 +1,4 @@
+LLM unavailable — cannot generate LLM-judged labels.
+Options:
+(1) configure API access (set GEMINI_API_KEY or OPENAI_API_KEY) and rerun
+(2) explicitly invoke linear_baseline.py as the training label source and document this in the report.

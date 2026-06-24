@@ -1,0 +1,82 @@
+{
+  "CAND_0048465": {
+    "label": 1,
+    "reason": "The candidate has relevant software engineering experience and product company background (Zomato) but explicitly states no professional AI/ML experience and lacks the required deep IR depth, making them a weak fit for a Senior role; the 120-day notice period is also a major drawback."
+  },
+  "CAND_0001903": {
+    "label": 1,
+    "reason": "The candidate has significantly less experience (2.5 years vs 5-9 required) and explicitly states no professional AI/ML experience, lacking the deep IR depth (Ranking Systems, Text Encoders, Vector Representations, Search Backend) required for a Senior role, despite some self-learner ML exposure."
+  },
+  "CAND_0038431": {
+    "label": 1,
+    "reason": "Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  "CAND_0096731": {
+    "label": 1,
+    "reason": "The candidate's 2.9 years of experience is well below the 5-9 years required for a Senior role, they are currently a DevOps Engineer with limited application development, and explicitly state no professional AI/ML experience despite self-learning, missing core IR depth."
+  },
+  "CAND_0025729": {
+    "label": 1,
+    "reason": "The candidate explicitly states no professional AI/ML experience, and their career history is in Mobile Development/QA and Frontend Engineering, which does not align with the required deep IR depth for a Senior AI/ML Engineer role, despite some self-learning and a listed 'Learning to Rank' skill."
+  },
+  "CAND_0066975": {
+    "label": 1,
+    "reason": "Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  "CAND_0026198": {
+    "label": 1,
+    "reason": "Error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 26.030602673s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}"
+  },
+  "CAND_0027649": {
+    "label": 1,
+    "reason": "The candidate's 2.8 years of experience is significantly below the 5-9 year requirement for a Senior role, and while he has some relevant skills like Vector Search and Weaviate, his career history is primarily data engineering/analytics, and he explicitly states he's transitioning into AI/ML, indicating a lack of the deep IR depth required."
+  },
+  "CAND_0016000": {
+    "label": 1,
+    "reason": "The candidate's 2 years of general full-stack experience is significantly below the senior requirement, and they lack professional AI/ML and deep IR depth, having only self-learned and completed a small side project."
+  },
+  "CAND_0008618": {
+    "label": 2,
+    "reason": "The candidate demonstrates strong foundational IR skills, including OpenSearch, vector databases (Weaviate, Pinecone), embeddings, and NLP, with experience in recommendation and re-ranking in a product setting, making them a strong fit despite being slightly below the senior experience band and having a long notice period."
+  },
+  "CAND_0039521": {
+    "label": 1,
+    "reason": "The candidate demonstrates strong deep-IR skills and product experience highly relevant to the role; however, their total experience of 4.9 years falls below the required 5-year minimum for a Senior position, and a public coding signal is absent."
+  },
+  "CAND_0046010": {
+    "label": 1,
+    "reason": "The candidate's profile highlights data engineering and basic ML experience with an explicit desire to transition into AI/ML, indicating a lack of deep IR depth (e.g., Ranking Systems, Text Encoders, Search Backend) required for a Senior AI/ML Search & Retrieval role, despite listing 'Vector Search' as a skill."
+  },
+  "CAND_0039683": {
+    "label": 1,
+    "reason": "Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  "CAND_0003680": {
+    "label": 1,
+    "reason": "The candidate has strong data engineering experience and some foundational IR skills like BM25 and Learning to Rank, but explicitly seeks to transition into AI/ML, indicating a lack of the required deep IR expertise (Text Encoders, Vector Representations, Search Backend) for a senior role."
+  },
+  "CAND_0080766": {
+    "label": 3,
+    "reason": "Kiara is an excellent fit, demonstrating 8.8 years of experience as a Staff ML Engineer with deep IR depth in ranking systems, text encoders, and search backend across multiple product companies like Swiggy and Salesforce, and has a 0-day notice period."
+  },
+  "CAND_0083239": {
+    "label": 1,
+    "reason": "The candidate has significantly less experience (1.4 years vs 5-9 required), explicitly lacks professional AI/ML and deep IR depth, has a long notice period (150 days), and is unwilling to relocate, making them a plausible but very weak fit despite their general software engineering background at a product company."
+  },
+  "CAND_0013536": {
+    "label": 3,
+    "reason": "Nisha is an excellent fit due to her deep expertise in search and retrieval, demonstrated by leading a migration to embedding-based retrieval, extensive experience with ranking systems, vector representations, and search backend technologies, all within a product-company background."
+  },
+  "CAND_0073431": {
+    "label": 1,
+    "reason": "Error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 21.64679218s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}"
+  },
+  "CAND_0033942": {
+    "label": 1,
+    "reason": "Error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\\nPlease retry in 21.333797736s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}"
+  },
+  "CAND_0034575": {
+    "label": 1,
+    "reason": "The candidate is a QA Engineer with 3.5 years of experience, explicitly stating no professional AI/ML experience, and critically lacking the required deep IR depth for a Senior Search & Retrieval role, despite some self-learner interest in ML."
+  }
+}
