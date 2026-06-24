@@ -30,6 +30,7 @@ def run(feature_store: dict, gold_judgments: dict) -> dict:
 
     model = GBMLambdaRankModel(random_state=42)
     model.fit(X_train, y_train)
+    model.save("ranking_lab/models/gbm_lambdarank.txt")
 
     # Eval on gold-set candidates
     gold_cids = list(gold_judgments.keys())

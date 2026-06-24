@@ -48,3 +48,16 @@ class GBMLambdaRankModel:
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         return self.model.predict(X)
+
+    def save(self, filepath: str):
+        """
+        Saves the underlying LightGBM booster so it can be loaded directly by SHAP's TreeExplainer.
+        """
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        self.model.booster_.save_model(filepath)
+
+    def load(self, filepath: str):
+        """
+        Loads the booster. Note that this replaces the LGBMRanker wrapper with a raw booster.
+        """
+        self.model = lgb.Booster(model_file=filepath)
