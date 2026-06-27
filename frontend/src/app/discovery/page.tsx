@@ -10,7 +10,7 @@ import { Settings2 } from "lucide-react";
 
 export default function Discovery() {
   const router = useRouter();
-  const { searchResponse, setSearchResponse, lastQuery, setLastQuery } = useSearchState();
+  const { searchResponse, setSearchResponse, lastQuery, setLastQuery, setSearchLatency } = useSearchState();
   const [jdText, setJdText] = useState(lastQuery);
   const [isEditing, setIsEditing] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
@@ -59,8 +59,11 @@ export default function Discovery() {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     
     debounceRef.current = setTimeout(async () => {
+      const startTime = performance.now();
       try {
         const res = await rerankByJD({ session_id: searchResponse.session_id, updated_jd_text: newText });
+        const endTime = performance.now();
+        setSearchLatency(Math.round(endTime - startTime));
         setSearchResponse(res);
         setLastQuery(newText);
       } catch (err) {
@@ -161,6 +164,7 @@ export default function Discovery() {
             checked={selectedIds.includes(cand.candidate_id)}
             onCheckChange={(checked) => handleCheckChange(cand.candidate_id, checked)}
             disabledCheckbox={selectedIds.length >= 4}
+            showShortlistToggle={true}
           />
         ))}
       </div>

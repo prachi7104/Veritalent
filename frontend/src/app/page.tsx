@@ -21,7 +21,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   
-  const { searchResponse, setSearchResponse, setLastQuery } = useSearchState();
+  const { searchResponse, setSearchResponse, setLastQuery, setSearchLatency, setScenarioInteraction } = useSearchState();
   const router = useRouter();
 
   const handleSearch = async (query: string) => {
@@ -34,8 +34,13 @@ export default function Home() {
     setErrorMsg(null);
     setInputValue(query);
     
+    const startTime = performance.now();
     try {
       const res = await search({ jd_text: query });
+      const endTime = performance.now();
+      
+      setSearchLatency(Math.round(endTime - startTime));
+      setScenarioInteraction(null); // Reset on new search
       setSearchResponse(res);
       setLastQuery(query);
     } catch (e: unknown) {

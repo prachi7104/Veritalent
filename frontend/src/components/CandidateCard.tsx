@@ -1,5 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useSearchState } from "@/lib/SearchStateProvider";
+import { Star } from "lucide-react";
 import type { CandidateCardResponse } from "@/lib/types";
 import { TrustBadge } from "./TrustBadge";
 import { TIED_BAND_RANKS } from "@/lib/constants";
@@ -11,6 +13,7 @@ interface CandidateCardProps {
   checked?: boolean;
   onCheckChange?: (checked: boolean) => void;
   disabledCheckbox?: boolean;
+  showShortlistToggle?: boolean;
 }
 
 export function CandidateCard({
@@ -20,12 +23,17 @@ export function CandidateCard({
   checked = false,
   onCheckChange,
   disabledCheckbox = false,
+  showShortlistToggle = false,
 }: CandidateCardProps) {
   const router = useRouter();
+  const { shortlistedCandidates, toggleShortlist } = useSearchState();
+
+  const isShortlisted = shortlistedCandidates.some((c) => c.candidate_id === candidate.candidate_id);
 
   const handleClick = (e: React.MouseEvent) => {
-    // Prevent triggering navigation when clicking the checkbox
-    if ((e.target as HTMLElement).tagName === "INPUT") {
+    // Prevent triggering navigation when clicking checkbox or star button
+    const target = e.target as HTMLElement;
+    if (target.tagName === "INPUT" || target.closest(".shortlist-btn")) {
       return;
     }
     if (isInteractive) {
@@ -84,7 +92,28 @@ export function CandidateCard({
         )}
       </div>
 
-      <div style={{ paddingLeft: "16px" }}>
+      <div style={{ paddingLeft: "16px", display: "flex", alignItems: "center", gap: "12px" }}>
+        {showShortlistToggle && (
+          <button
+            className="shortlist-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleShortlist(candidate);
+            }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "4px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: isShortlisted ? "#eab308" : "var(--text-muted)" // Gold for active, muted for inactive
+            }}
+          >
+            <Star size={20} fill={isShortlisted ? "#eab308" : "none"} />
+          </button>
+        )}
         <TrustBadge level={candidate.trust_level} />
       </div>
     </div>

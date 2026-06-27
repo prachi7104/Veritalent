@@ -6,7 +6,8 @@ import { useSearchState } from "@/lib/SearchStateProvider";
 import { FeatureBar } from "@/components/FeatureBar";
 import { TrustBadge } from "@/components/TrustBadge";
 import { FINGERPRINT_CAVEAT } from "@/lib/constants";
-import type { CandidateDetailResponse, SkillGap } from "@/lib/types";
+import { Star } from "lucide-react";
+import type { CandidateDetailResponse, SkillGap, CandidateCardResponse } from "@/lib/types";
 
 export default function CandidateDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -15,7 +16,7 @@ export default function CandidateDetail({ params }: { params: Promise<{ id: stri
   const [error, setError] = useState<string | null>(null);
   const [checksExpanded, setChecksExpanded] = useState(false);
   
-  const { searchResponse } = useSearchState();
+  const { searchResponse, shortlistedCandidates, toggleShortlist } = useSearchState();
 
   // Cold link explicit lookup mechanism
   let rank: number | null = null;
@@ -51,6 +52,28 @@ export default function CandidateDetail({ params }: { params: Promise<{ id: stri
 
   const { profile, shap_attribution, trust_breakdown } = candidate;
 
+  // Synthesize CandidateCardResponse for shortlist toggle
+  const cardMatch = searchResponse?.candidates.find(c => c.candidate_id === candidateId);
+  const candidateCardObj: CandidateCardResponse = cardMatch || {
+    candidate_id: candidate.candidate_id,
+    rank: rank || 0,
+    score: 0,
+    current_title: profile.current_title,
+    current_company: profile.current_company,
+    years_of_experience: profile.years_of_experience,
+    location: profile.location,
+    top_features: [],
+    trust_score: trust_breakdown.composite_score,
+    trust_level: trust_breakdown.level,
+    fingerprint_holder: candidate.fingerprint_holder,
+    narrative: candidate.narrative,
+    narrative_is_llm: candidate.narrative_is_llm,
+    fallback_used: false,
+    skill_gap: skillGap || { missing_deep_ir_skills: [], matched_deep_ir_skills: [], gap_to_next_tier: null }
+  };
+
+  const isShortlisted = shortlistedCandidates.some((c) => c.candidate_id === candidateId);
+
   // Find max absolute value for SHAP scaling
   const maxShap = shap_attribution.top_features.reduce(
     (max, feat) => Math.max(max, Math.abs(feat.shap_contribution)), 
@@ -61,12 +84,30 @@ export default function CandidateDetail({ params }: { params: Promise<{ id: stri
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "32px 16px" }}>
       {/* 1. Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px" }}>
-        <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 8px 0", color: "var(--text-primary)" }}>
-            {profile.current_title}
-          </h1>
-          <div style={{ color: "var(--text-secondary)", fontSize: "1.1rem" }}>
-            {profile.current_company} &middot; {profile.years_of_experience} yrs &middot; {profile.location}
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+          <button
+            onClick={() => toggleShortlist(candidateCardObj)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: isShortlisted ? "#eab308" : "var(--text-muted)",
+              marginTop: "4px"
+            }}
+          >
+            <Star size={24} fill={isShortlisted ? "#eab308" : "none"} />
+          </button>
+          <div>
+            <h1 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 8px 0", color: "var(--text-primary)" }}>
+              {profile.current_title}
+            </h1>
+            <div style={{ color: "var(--text-secondary)", fontSize: "1.1rem" }}>
+              {profile.current_company} &middot; {profile.years_of_experience} yrs &middot; {profile.location}
+            </div>
           </div>
         </div>
         {rank !== null && (

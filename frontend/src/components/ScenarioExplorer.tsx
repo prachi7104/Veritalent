@@ -12,7 +12,7 @@ interface ScenarioExplorerProps {
 
 export function ScenarioExplorer({ isOpen, onClose }: ScenarioExplorerProps) {
   const router = useRouter();
-  const { searchResponse } = useSearchState();
+  const { searchResponse, setScenarioInteraction } = useSearchState();
 
   const [mode, setMode] = useState<"default" | "custom">("default");
   const [weights, setWeights] = useState<Record<ScenarioGroup, number>>({
@@ -30,7 +30,10 @@ export function ScenarioExplorer({ isOpen, onClose }: ScenarioExplorerProps) {
   
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
-  const fetchRerank = async (currentWeights: Record<ScenarioGroup, number>) => {
+  const fetchRerank = async (
+    currentWeights: Record<ScenarioGroup, number>,
+    originatingGroup?: ScenarioGroup
+  ) => {
     if (!searchResponse) return;
     setLoading(true);
     setErrorMsg(null);
@@ -40,6 +43,49 @@ export function ScenarioExplorer({ isOpen, onClose }: ScenarioExplorerProps) {
         weight_overrides: currentWeights,
       });
       setReRankedList(res.re_ranked);
+
+      // Only record interaction if triggered by a slider onChange event
+      if (originatingGroup) {
+        // Find maximum absolute delta
+        let maxDelta = 0;
+        res.re_ranked.forEach((c) => {
+          const absDelta = Math.abs(c.rank_delta);
+          if (absDelta > maxDelta) {
+            maxDelta = absDelta;
+          }
+        });
+
+        // Only record if some rank movement occurred
+        if (maxDelta > 0) {
+          // Filter candidates with maximum delta
+          const candidatesWithMaxDelta = res.re_ranked.filter(
+            (c) => Math.abs(c.rank_delta) === maxDelta
+          );
+
+          // Tie-break: select the one with the lowest new_rank (meaning highest rank e.g. #1 over #5)
+          let winner = candidatesWithMaxDelta[0];
+          candidatesWithMaxDelta.forEach((c) => {
+            if (c.new_rank < winner.new_rank) {
+              winner = c;
+            }
+          });
+
+          // Retrieve candidate title
+          const match = searchResponse.candidates.find(
+            (c) => c.candidate_id === winner.candidate_id
+          );
+          const candidateTitle = match?.current_title || "a candidate";
+
+          // Save the interaction details
+          setScenarioInteraction({
+            group: originatingGroup,
+            value: currentWeights[originatingGroup],
+            originalRank: winner.original_rank,
+            newRank: winner.new_rank,
+            candidateTitle,
+          });
+        }
+      }
     } catch (err: unknown) {
       if (err instanceof ApiError && err.status === 404) {
         setErrorMsg("Session expired or not found. Please re-submit your search.");
@@ -70,7 +116,7 @@ export function ScenarioExplorer({ isOpen, onClose }: ScenarioExplorerProps) {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
     debounceRef.current = setTimeout(() => {
-      fetchRerank(nextWeights);
+      fetchRerank(nextWeights, group);
     }, 250);
   };
 
