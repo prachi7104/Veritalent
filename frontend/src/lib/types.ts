@@ -143,6 +143,7 @@ export interface CompareResponse {
 export interface RerankRequest {
   session_id: string;
   updated_jd_text: string;
+  top_k?: number;
 }
 
 export type ScenarioGroup = "skills" | "experience" | "activity" | "trust" | "logistics" | "company";

@@ -61,7 +61,11 @@ export default function Discovery() {
     debounceRef.current = setTimeout(async () => {
       const startTime = performance.now();
       try {
-        const res = await rerankByJD({ session_id: searchResponse.session_id, updated_jd_text: newText });
+        const res = await rerankByJD({
+          session_id: searchResponse.session_id,
+          updated_jd_text: newText,
+          top_k: searchResponse.candidates.length || 100,
+        });
         const endTime = performance.now();
         setSearchLatency(Math.round(endTime - startTime));
         setSearchResponse(res);
@@ -93,7 +97,7 @@ export default function Discovery() {
     <div style={{ maxWidth: "900px", margin: "0 auto", padding: "32px 16px", paddingBottom: "100px" }}>
       {/* 1. Funnel Strip */}
       <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "24px" }}>
-        100,000 total &rarr; 31,179 title-relevant &rarr; {funnel_stats.retrieved} retrieved &rarr; {funnel_stats.shown} shown
+        {funnel_stats.total_pool.toLocaleString()} total &rarr; {funnel_stats.title_relevant.toLocaleString()} title-relevant &rarr; {funnel_stats.retrieved} retrieved &rarr; {funnel_stats.shown} shown
       </div>
 
       {/* 2. JD Chips */}

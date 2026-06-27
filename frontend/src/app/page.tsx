@@ -36,7 +36,7 @@ export default function Home() {
     
     const startTime = performance.now();
     try {
-      const res = await search({ jd_text: query });
+      const res = await search({ jd_text: query, top_k: 100 });
       const endTime = performance.now();
       
       setSearchLatency(Math.round(endTime - startTime));
