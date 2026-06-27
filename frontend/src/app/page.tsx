@@ -57,12 +57,32 @@ export default function Home() {
   };
 
   return (
-    <main style={{ maxWidth: "800px", margin: "0 auto", padding: "64px 16px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        minHeight: 0,
+        width: "100%",
+        padding: "32px 16px",
+      }}
+    >
       <div style={{ textAlign: "center", marginBottom: "32px" }}>
-        <h1 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--text-muted)" }}>Candidate discovery</h1>
+        <h1 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--text-muted)", margin: 0 }}>
+          Candidate discovery
+        </h1>
       </div>
 
-      <div style={{ position: "relative", marginBottom: "12px" }}>
+      {/* Omnibox wrapper with responsive width clamp */}
+      <div
+        style={{
+          position: "relative",
+          marginBottom: "12px",
+          width: "min(480px, calc(100vw - 32px))",
+        }}
+      >
         <input
           type="text"
           value={inputValue}
@@ -83,26 +103,42 @@ export default function Home() {
           }}
         />
         {loading && (
-          <div style={{ position: "absolute", right: "24px", top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)" }}>
+          <div
+            style={{
+              position: "absolute",
+              right: "24px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "var(--text-muted)",
+            }}
+          >
             Searching...
           </div>
         )}
       </div>
 
       {errorMsg && (
-        <div style={{ color: "var(--text-danger)", marginBottom: "24px", textAlign: "center" }}>
+        <div style={{ color: "var(--text-danger)", marginBottom: "24px", textAlign: "center", width: "min(480px, calc(100vw - 32px))" }}>
           {errorMsg}
         </div>
       )}
 
       {/* Preview Section */}
       {searchResponse && !loading && (
-        <div style={{ marginBottom: "32px", padding: "24px", backgroundColor: "var(--surface-1)", borderRadius: "var(--radius)" }}>
+        <div
+          style={{
+            marginBottom: "32px",
+            padding: "24px",
+            backgroundColor: "var(--surface-1)",
+            borderRadius: "var(--radius)",
+            width: "min(640px, calc(100vw - 32px))",
+          }}
+        >
           <div style={{ marginBottom: "16px", color: "var(--text-secondary)", fontWeight: 500 }}>
             Showing results for &quot;{inputValue}&quot;
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
-            {searchResponse.candidates.slice(0, 3).map(cand => (
+            {searchResponse.candidates.slice(0, 3).map((cand) => (
               <CandidateCard key={cand.candidate_id} candidate={cand} isInteractive={false} />
             ))}
           </div>
@@ -116,7 +152,7 @@ export default function Home() {
               borderRadius: "var(--radius)",
               fontWeight: 600,
               cursor: "pointer",
-              width: "100%"
+              width: "100%",
             }}
           >
             View all {searchResponse.candidates.length} results →
@@ -124,7 +160,15 @@ export default function Home() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px" }}>
+      {/* Grid with auto-fit layout */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+          gap: "12px",
+          width: "min(640px, calc(100vw - 32px))",
+        }}
+      >
         {SUGGESTIONS.map((s, idx) => (
           <button
             key={idx}
@@ -149,6 +193,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

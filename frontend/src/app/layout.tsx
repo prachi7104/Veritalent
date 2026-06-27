@@ -28,8 +28,12 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <SearchStateProvider>
-          <Navbar />
-          {children}
+          <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+            <Navbar />
+            <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+              {children}
+            </main>
+          </div>
         </SearchStateProvider>
       </body>
     </html>
