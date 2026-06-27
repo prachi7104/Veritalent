@@ -7,14 +7,26 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Setup client as requested
-pythonclient = openai.OpenAI(
-    base_url="https://api.cerebras.ai/v1",
-    api_key=os.environ.get("CEREBRAS_API_KEY")
-)
+if os.environ.get("GROQ_API_KEY"):
+    pythonclient = openai.OpenAI(
+        base_url="https://api.groq.com/openai/v1",
+        api_key=os.environ.get("GROQ_API_KEY"),
+        max_retries=2
+    )
+    DEFAULT_MODEL = "llama-3.3-70b-versatile"
+else:
+    pythonclient = openai.OpenAI(
+        base_url="https://api.cerebras.ai/v1",
+        api_key=os.environ.get("CEREBRAS_API_KEY"),
+        max_retries=0
+    )
+    DEFAULT_MODEL = "gpt-oss-120b"
 
 CACHE_DIR = Path("explainability_lab/narratives_cache")
 
-def generate_narrative(candidate_id: str, shap_summary: list[dict], mode: str = "precompute", model: str = "gpt-oss-120b") -> str:
+def generate_narrative(candidate_id: str, shap_summary: list[dict], mode: str = "precompute", model: str = None) -> str:
+    if model is None:
+        model = DEFAULT_MODEL
     """
     Generates a SHAP-grounded narrative using two modes:
       - mode='precompute': Calls the LLM and caches the result.
@@ -32,6 +44,9 @@ def generate_narrative(candidate_id: str, shap_summary: list[dict], mode: str = 
             return generate_fallback(shap_summary)
             
     # mode == "precompute"
+    if cache_path.exists():
+        with open(cache_path, "r", encoding="utf-8") as f:
+            return json.load(f)["narrative"]
     features_str = "\n".join([f"- Feature: **{item['feature']}** (Value: {item['raw_value']}, SHAP contribution: {item['shap_value']:.4f})" for item in shap_summary])
     
     prompt = f"""You are a recruiter-facing AI assistant. Explain why this candidate received their ranking score.
@@ -50,7 +65,8 @@ Draft the explanation now:
     response = pythonclient.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.2
+        temperature=0.2,
+        timeout=5.0
     )
     
     narrative = response.choices[0].message.content.strip()

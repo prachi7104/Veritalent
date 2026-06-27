@@ -1,0 +1,20 @@
+:root {
+  --surface-0: #ffffff;
+  --surface-1: #f5f6f8;
+  --surface-2: #ffffff;
+  --bg-accent: #e3effb;
+  --text-accent: #185fa5;
+  --bg-success: #e4f5ec;
+  --text-success: #1c7a4d;
+  --bg-warning: #fdf0d8;
+  --text-warning: #9a6400;
+  --bg-danger: #fbe6e6;
+  --text-danger: #a32d2d;
+  --text-primary: #14181f;
+  --text-secondary: #5b6472;
+  --text-muted: #8b93a1;
+  --border: #e3e6ea;
+  --border-strong: #cdd2da;
+  --radius: 8px;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
