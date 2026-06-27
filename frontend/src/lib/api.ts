@@ -25,7 +25,7 @@ async function fetchWithHandleError(url: string, options?: RequestInit) {
             ? errorData.detail 
             : JSON.stringify(errorData.detail);
       }
-    } catch (e) {
+    } catch {
       // Fallback if not JSON
       detailMessage = await response.text();
     }
