@@ -9,6 +9,7 @@ class SearchRequest(BaseModel):
 class RerankRequest(BaseModel):
     session_id: str
     updated_jd_text: str = Field(..., min_length=20)
+    top_k: int = Field(default=100, le=100)
 
 class CompareRequest(BaseModel):
     candidate_ids: list[str] = Field(..., min_length=2, max_length=4)

@@ -9,6 +9,7 @@ from backend.services.explainability_service import get_shap_attribution, get_na
 from backend.services.skill_gap_helper import compute_skill_gap
 from backend.config import get_trust_level
 from backend.data_access.candidate_repository import get as get_candidate
+from explainability_lab.narrative.candidate_context import build_candidate_context
 from backend.api.schemas.responses import (
     SearchResponse, FunnelStats, CandidateCardResponse, SkillGap, JDDecomposition
 )
@@ -45,13 +46,32 @@ def execute_live_query(jd_text: str, top_k: int, include_trust: bool = True, all
     responses = []
     ranked_candidates_features = [c[1] for c in scored_cands]
     
+    pool_jd_skill_mean = sum(float(f.get("jd_skill_score", 0)) for f in ranked_candidates_features) / max(1, len(ranked_candidates_features))
+    
     for rank, (cid, feat, score) in enumerate(top_cands, start=1):
         raw = get_candidate(cid) or {}
         
         shap_attr = get_shap_attribution(feat)
         top_features = shap_attr.get("top_features", [])
         
-        narrative, narrative_is_llm, fallback_used = get_narrative(cid, top_features)
+        shap_contributions = [
+            {
+                "feature": f.feature_name,
+                "shap_value": f.shap_contribution,
+                "raw_value": f.value
+            }
+            for f in top_features
+        ]
+        
+        context = build_candidate_context(
+            candidate=raw,
+            features=feat,
+            shap_contributions=shap_contributions,
+            rank=rank,
+            pool_jd_skill_mean=pool_jd_skill_mean
+        )
+        
+        narrative, narrative_is_llm, fallback_used = get_narrative(cid, context)
         
         sg = compute_skill_gap(raw, jd_decomp, rank, ranked_candidates_features)
         

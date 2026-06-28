@@ -24,7 +24,46 @@ else:
 
 CACHE_DIR = Path("explainability_lab/narratives_cache")
 
-def generate_narrative(candidate_id: str, shap_summary: list[dict], mode: str = "precompute", model: str = None) -> str:
+SYSTEM_PROMPT = """You are a senior technical recruiter writing candidate evaluation notes.
+Your job is to explain why a candidate ranked where they did for a specific role.
+
+Rules:
+1. Write in plain English. No raw feature names like "skill_mastery_triangulation" —
+   translate them: skill_mastery_triangulation → "verified skill depth",
+   skill_depth → "breadth of technical skills", logistics_fit_score → "availability and location fit",
+   activity_quality_composite → "platform engagement", implied_skill_score → "IR vocabulary in profile",
+   yoe_band_fit → "experience level alignment", jd_skill_score → "JD-relevant skill match",
+   trust_score → "profile credibility".
+2. Lead with WHO the candidate is: their current role, YOE, and company background.
+3. State the primary ranking driver in one sentence.
+4. Name 1–2 JD-specific alignment points (the JD is for a Senior AI/ML Engineer
+   focused on Search & Retrieval, 5–9 YOE, Pune/Noida, product company preferred).
+5. Add one honest limitation or caveat at the end.
+6. Maximum 120 words. Be precise. Be honest. Do not hallucinate facts not in the data.
+7. Do not start with "The candidate" — vary your openings.
+"""
+
+USER_PROMPT_TEMPLATE = """
+Role: Senior AI/ML Engineer — Search & Retrieval (5–9 YOE, Pune/Noida, product-first)
+Rank: #{rank} of 100
+
+Candidate snapshot:
+- Current title: {current_title}
+- Years of experience: {yoe}
+- Current company: {current_company} ({company_type})
+- Location: {location}
+- Notice period: {notice_period}
+- Key skills (JD-relevant): {jd_skills}
+- Top SHAP drivers: {shap_summary}
+- JD skill score: {jd_skill_score:.1f} (pool mean: {pool_jd_skill_mean:.1f})
+- Experience band: {yoe_band_label}
+- Trust status: {trust_label}
+
+Write a 80–120 word recruiter note explaining this ranking.
+Start with who this person is. Be specific. Be honest. No bullet points.
+"""
+
+def generate_narrative(candidate_id: str, context: dict, mode: str = "precompute", model: str = None) -> str:
     if model is None:
         model = DEFAULT_MODEL
     """
@@ -40,31 +79,22 @@ def generate_narrative(candidate_id: str, shap_summary: list[dict], mode: str = 
             with open(cache_path, "r", encoding="utf-8") as f:
                 return json.load(f)["narrative"]
         else:
-            from explainability_lab.narrative.fallback_narrative import generate_fallback
-            return generate_fallback(shap_summary)
+            from explainability_lab.narrative.fallback_narrative import generate_fallback_narrative
+            return generate_fallback_narrative(context)
             
     # mode == "precompute"
     if cache_path.exists():
         with open(cache_path, "r", encoding="utf-8") as f:
             return json.load(f)["narrative"]
-    features_str = "\n".join([f"- Feature: **{item['feature']}** (Value: {item['raw_value']}, SHAP contribution: {item['shap_value']:.4f})" for item in shap_summary])
+            
+    prompt = USER_PROMPT_TEMPLATE.format(**context)
     
-    prompt = f"""You are a recruiter-facing AI assistant. Explain why this candidate received their ranking score.
-    
-Here are the TOP contributing factors from the model's decision process (SHAP values):
-{features_str}
-
-RULES:
-1. You MUST reference ONLY these provided features. Do NOT hallucinate or add outside reasoning.
-2. You MUST mention each feature by its exact name in bold, e.g. **skill_depth**, **trust_score**.
-3. Keep it brief (2-4 sentences).
-
-Draft the explanation now:
-"""
-
     response = pythonclient.chat.completions.create(
         model=model,
-        messages=[{"role": "user", "content": prompt}],
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt}
+        ],
         temperature=0.2,
         timeout=5.0
     )

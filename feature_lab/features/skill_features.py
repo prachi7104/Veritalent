@@ -15,6 +15,7 @@ Note on skill_recency:
   of past roles as a proxy for the start of the current role.
 """
 from typing import Dict, Any, Tuple
+from datetime import date, datetime
 
 from feature_lab.features.base import BaseFeature
 from feature_lab.features.feature_registry import registry
@@ -113,38 +114,62 @@ class SkillBreadthFeature(BaseFeature):
 
 class SkillRecencyFeature(BaseFeature):
     """
-    1.0 if any deep-IR or buzzword skill's stated duration_months
-    exceeds the cumulative duration of all non-current roles
-    (i.e. the skill likely extends into the current role), 0.0 otherwise.
-    reliability: clean
+    Skill recency: fraction of deep-IR and buzzword skills that appear
+    to be currently in use, based on career timeline.
+
+    NEW LOGIC (v2):
+      A skill is considered "recent" if its stated duration_months extends
+      into the last 24 months of the candidate's career timeline.
+
+      Method:
+        1. Compute candidate's career_start estimate:
+           today_months - years_of_experience * 12
+        2. A skill is recent if:
+           career_start + skill.duration_months > today_months - 24
+           i.e. the skill's duration would reach into the last 2 years
+
+      Returns: fraction of deep-IR + buzzword skills that are recent.
+      Range: 0.0 to 1.0
+      reliability: clean
+
+    WHY: Old binary logic (duration > cumulative_past) failed for all
+    senior candidates with long career histories. This date-anchored
+    approach correctly handles experienced engineers.
     """
+
     def __init__(self):
-        super().__init__("skill_recency", 1, "clean")
+        super().__init__("skill_recency", 2, "clean")  # version bumped to 2
 
     def compute(self, candidate: Dict[str, Any]) -> Tuple[float, str]:
-        career = candidate.get("career_history", [])
-        if not career:
+        today_months = date.today().year * 12 + date.today().month
+
+        # Estimate career start from YOE
+        yoe = float(candidate.get("profile", {}).get("years_of_experience", 0) or 0)
+        if yoe <= 0:
             return 0.0, self.default_reliability_tag
 
-        past_duration = 0
-        current_exists = False
-        for role in career:
-            if role.get("is_current", False):
-                current_exists = True
-            else:
-                past_duration += int(role.get("duration_months", 0) or 0)
-
-        if not current_exists:
-            return 0.0, self.default_reliability_tag
+        career_start_months = today_months - int(yoe * 12)
+        recency_cutoff = today_months - 24  # 2 years ago
 
         skills = candidate.get("skills", [])
-        for skill in skills:
-            band = get_skill_band(skill.get("name", ""))
-            if band in ("deep-ir", "buzzword"):
-                dur = int(skill.get("duration_months", 0) or 0)
-                if dur > past_duration:
-                    return 1.0, self.default_reliability_tag
-        return 0.0, self.default_reliability_tag
+        target_bands = ("deep-ir", "buzzword")
+        target_skills = [s for s in skills
+                         if get_skill_band(s.get("name", "")) in target_bands]
+
+        if not target_skills:
+            return 0.0, self.default_reliability_tag
+
+        recent_count = 0
+        for skill in target_skills:
+            dur = int(skill.get("duration_months", 0) or 0)
+            if dur <= 0:
+                continue
+            # skill's effective end month in career timeline
+            skill_end_month = career_start_months + dur
+            if skill_end_month >= recency_cutoff:
+                recent_count += 1
+
+        return recent_count / len(target_skills), self.default_reliability_tag
 
 
 class SkillMasteryTriangulationFeature(BaseFeature):

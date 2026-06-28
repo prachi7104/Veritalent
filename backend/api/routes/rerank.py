@@ -10,7 +10,7 @@ def rerank(request: RerankRequest):
     try:
         return execute_live_query(
             jd_text=request.updated_jd_text,
-            top_k=20,
+            top_k=request.top_k,
             include_trust=True,
             allow_llm=False
         )

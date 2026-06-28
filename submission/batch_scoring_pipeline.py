@@ -14,19 +14,30 @@ from ranking_lab.models.monotonic_constraints import TRAINING_FEATURES as FEATUR
 from explainability_lab.attribution.shap_explainer import SHAPExplainer
 from explainability_lab.attribution.feature_contribution_summary import get_top_k_contributions
 from explainability_lab.narrative.grounded_narrative_generator import generate_narrative
-from explainability_lab.narrative.fallback_narrative import generate_fallback
+from explainability_lab.narrative.fallback_narrative import generate_fallback_narrative
 from explainability_lab.narrative.consistency_validator import validate_consistency
+from explainability_lab.narrative.candidate_context import build_candidate_context
 
 def main():
     print("Loading feature store...")
     feature_store = {}
+    pool_jd_skill_sum = 0.0
     with open('feature_lab/store/feature_store.jsonl', 'r') as f:
         for line in f:
             row = json.loads(line)
             feature_store[row['candidate_id']] = row
+            pool_jd_skill_sum += float(row.get('jd_skill_score', 0))
             
     print(f"Loaded {len(feature_store)} candidates from feature store.")
+    pool_jd_skill_mean = pool_jd_skill_sum / max(1, len(feature_store))
     
+    print("Loading candidates...")
+    candidates = {}
+    with open('dataset/[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl', 'r', encoding='utf-8') as f:
+        for line in f:
+            row = json.loads(line)
+            candidates[row['candidate_id']] = row
+            
     print("Loading GBM model...")
     model_path = "ranking_lab/models/gbm_lambdarank.txt"
     model = lgb.Booster(model_file=model_path)
@@ -75,11 +86,20 @@ def main():
         explainer_output = explainer.explain_candidate(candidate_dict)
         shap_summary = get_top_k_contributions(explainer_output, k=5)
         
+        context = build_candidate_context(
+            candidate=candidates.get(candidate_id, {}),
+            features=features,
+            shap_contributions=shap_summary,
+            rank=rank,
+            pool_jd_skill_mean=pool_jd_skill_mean
+        )
+        
         candidate_data.append({
             "candidate_id": candidate_id,
             "rank": rank,
             "score": score,
-            "shap_summary": shap_summary
+            "shap_summary": shap_summary,
+            "context": context
         })
         
     # Generate narratives concurrently
@@ -89,20 +109,20 @@ def main():
         rank = data["rank"]
         candidate_id = data["candidate_id"]
         shap_summary = data["shap_summary"]
+        context = data["context"]
         score = data["score"]
         
         try:
             reasoning = generate_narrative(
                 candidate_id=candidate_id,
-                shap_summary=shap_summary,
-                mode="precompute",
-                model="gpt-oss-120b"
+                context=context,
+                mode="precompute"
             )
             if not validate_consistency(reasoning, shap_summary):
-                reasoning = generate_fallback(shap_summary)
+                reasoning = generate_fallback_narrative(context)
         except Exception as e:
             print(f"Exception for rank {rank}: {e}")
-            reasoning = generate_fallback(shap_summary)
+            reasoning = generate_fallback_narrative(context)
             
         return {
             "candidate_id": candidate_id,

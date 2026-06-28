@@ -2,7 +2,7 @@ import os
 import json
 import logging
 from explainability_lab.attribution.shap_explainer import SHAPExplainer
-from explainability_lab.narrative.fallback_narrative import generate_fallback
+from explainability_lab.narrative.fallback_narrative import generate_fallback_narrative
 from backend.api.schemas.responses import FeatureContribution
 
 logger = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ def get_shap_attribution(candidate_features: dict) -> dict:
         logger.warning(f"SHAP attribution failed: {e}")
         return {"top_features": [], "baseline_score": 0.0}
 
-def get_narrative(candidate_id: str, shap_summary: list[FeatureContribution] = None) -> tuple[str, bool, bool]:
+def get_narrative(candidate_id: str, context: dict) -> tuple[str, bool, bool]:
     cache_path = os.path.join(CACHE_DIR, f"{candidate_id}.json")
     if os.path.exists(cache_path):
         try:
@@ -74,16 +74,5 @@ def get_narrative(candidate_id: str, shap_summary: list[FeatureContribution] = N
         except Exception as e:
             logger.warning(f"Failed to read narrative cache for {candidate_id}: {e}")
             
-    if shap_summary is None:
-        shap_summary = []
-    
-    fallback_input = []
-    for f in shap_summary:
-        fallback_input.append({
-            "feature": f.feature_name,
-            "shap_value": f.shap_contribution,
-            "raw_value": f.value
-        })
-        
-    fallback_text = generate_fallback(fallback_input)
+    fallback_text = generate_fallback_narrative(context)
     return fallback_text, False, True

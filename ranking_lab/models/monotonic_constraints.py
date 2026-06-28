@@ -14,12 +14,6 @@ TRAINING_FEATURES = [
 ]
 
 def get_monotonic_constraints() -> list[int]:
-    """
-    Returns a list of monotonic constraints matching the order of TRAINING_FEATURES.
-    +1 means as the feature increases, the predicted rank score should not decrease.
-    -1 means as the feature increases, the predicted rank score should not increase.
-    0 means no constraint.
-    """
     constraints = []
     for feature in TRAINING_FEATURES:
         if feature == "trust_score":

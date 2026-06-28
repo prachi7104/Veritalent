@@ -162,6 +162,71 @@ class InflectionPointStrengthFeature(BaseFeature):
         return max_jump, self.default_reliability_tag
 
 
+class YOEBandFitFeature(BaseFeature):
+    """
+    YOE Band Fit: measures how well a candidate's total experience
+    matches the JD's stated experience requirement (5–9 years).
+
+    Scoring:
+      5–9 YOE  → 1.0  (exact target band)
+      4–5 YOE  → 0.75 (slightly junior, trainable)
+      9–12 YOE → 0.70 (slightly senior, likely overqualified)
+      3–4 YOE  → 0.40 (meaningfully junior)
+      12–15 YOE → 0.40 (meaningfully overqualified — different expectations)
+      <3 YOE   → 0.10 (too junior for this role)
+      >15 YOE  → 0.25 (very senior — likely wrong role level)
+      unknown  → 0.50 (neutral, don't penalize missing data)
+
+    reliability: 'clean' if years_of_experience is explicitly set,
+                 'sparse' if inferred or missing.
+
+    NOTE: This feature is JD-specific. If the JD changes, update
+    the band boundaries here. This is intentional and documented.
+    """
+
+    JD_TARGET_MIN = 5
+    JD_TARGET_MAX = 9
+
+    BAND_SCORES = [
+        (0,   3,   0.10),
+        (3,   4,   0.40),
+        (4,   5,   0.75),
+        (5,   9,   1.00),   # target band
+        (9,   12,  0.70),
+        (12,  15,  0.40),
+        (15,  float("inf"), 0.25),
+    ]
+
+    def __init__(self):
+        super().__init__("yoe_band_fit", 1, "sparse")
+
+    def compute(self, candidate: Dict[str, Any]) -> Tuple[float, str]:
+        profile = candidate.get("profile", {})
+        yoe_raw = profile.get("years_of_experience")
+
+        if yoe_raw is None:
+            # Try to estimate from career history
+            career = candidate.get("career_history", [])
+            if career:
+                total_months = sum(
+                    float(r.get("duration_months", 0) or 0)
+                    for r in career
+                )
+                yoe = total_months / 12.0
+                tag = "sparse"  # estimated, not stated
+            else:
+                return 0.50, "sparse"  # neutral, no data
+        else:
+            yoe = float(yoe_raw)
+            tag = "clean"
+
+        for low, high, score in self.BAND_SCORES:
+            if low <= yoe < high:
+                return score, tag
+
+        return 0.25, tag  # fallback for edge cases
+
+
 # ---------------------------------------------------------------------------
 # Register all features
 # ---------------------------------------------------------------------------
@@ -169,3 +234,4 @@ registry.register(CareerVelocityFeature())
 registry.register(PromotionVelocityFeature())
 registry.register(TenureStabilityFeature())
 registry.register(InflectionPointStrengthFeature())
+registry.register(YOEBandFitFeature())
