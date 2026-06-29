@@ -84,3 +84,24 @@ class ActivityQualityCompositeFeature(BaseFeature):
 
 
 registry.register(ActivityQualityCompositeFeature())
+
+
+class RecruiterResponseRateFeature(BaseFeature):
+    """
+    Raw recruiter response rate from redrob_signals.
+    Range: 0.0 to 1.0
+    Higher = candidate responds to recruiters more often = more hireable signal.
+
+    Simpler than activity_quality_composite — single signal, no blending.
+    """
+    def __init__(self):
+        super().__init__("recruiter_response_rate", 1, "sparse")
+
+    def compute(self, candidate: Dict[str, Any]) -> Tuple[float, str]:
+        rate = (candidate.get("redrob_signals", {}) or {}).get("recruiter_response_rate")
+        if rate is None:
+            return 0.5, "sparse"   # neutral — no data
+        return float(rate), "clean"
+
+
+registry.register(RecruiterResponseRateFeature())

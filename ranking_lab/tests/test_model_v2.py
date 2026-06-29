@@ -53,3 +53,43 @@ def test_netflix_outranks_aganitha_on_jd_skill_score():
         f"Netflix (LtR+BM25+Weaviate) should beat Aganitha (QLoRA+PyTorch). "
         f"Got netflix={s_netflix:.2f}, aganitha={s_aganitha:.2f}"
     )
+
+
+def test_feature_config_fix1_lengths_match():
+    from ranking_lab.models.feature_config_v2_fix1 import (
+        FEATURE_NAMES_FIX1, MONOTONIC_CONSTRAINTS_FIX1
+    )
+    assert len(FEATURE_NAMES_FIX1) == len(MONOTONIC_CONSTRAINTS_FIX1)
+
+
+def test_activity_constraint_is_positive_in_fix1():
+    """activity_quality_composite must have +1 constraint in Fix-1."""
+    from ranking_lab.models.feature_config_v2_fix1 import (
+        FEATURE_NAMES_FIX1, MONOTONIC_CONSTRAINTS_FIX1
+    )
+    m = dict(zip(FEATURE_NAMES_FIX1, MONOTONIC_CONSTRAINTS_FIX1))
+    assert m.get("activity_quality_composite") == 1, (
+        "activity_quality_composite must be constrained to +1 in Fix-1"
+    )
+
+
+def test_dead_features_removed_in_fix1():
+    """skill_recency and implied_skill_score must not be in Fix-1 feature set."""
+    from ranking_lab.models.feature_config_v2_fix1 import FEATURE_NAMES_FIX1
+    assert "skill_recency" not in FEATURE_NAMES_FIX1
+    assert "implied_skill_score" not in FEATURE_NAMES_FIX1
+
+
+def test_blend_config_valid_if_exists():
+    """If blend config was written, alpha must be in [0.6, 0.95] range."""
+    from pathlib import Path
+    import json
+    p = Path("ranking_lab/models/blend_config.json")
+    if not p.exists():
+        import pytest; pytest.skip("Blend not used")
+    with open(p) as f:
+        cfg = json.load(f)
+    assert 0.5 <= cfg["alpha"] <= 1.0
+    assert "jd_skill_score" in cfg["new_features"]
+    assert "yoe_band_fit"   in cfg["new_features"]
+

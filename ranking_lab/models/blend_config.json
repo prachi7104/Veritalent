@@ -1,0 +1,8 @@
+{
+  "alpha": 0.9,
+  "old_model": "ranking_lab/models/gbm_lambdarank.txt",
+  "new_features": {
+    "jd_skill_score": 0.6,
+    "yoe_band_fit": 0.4
+  }
+}
