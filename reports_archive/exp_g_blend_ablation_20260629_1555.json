@@ -1,0 +1,18 @@
+{
+  "experiment": "exp_g_blend_ablation",
+  "baseline_blend": 0.7482,
+  "baseline_orig": 0.7473,
+  "results": {
+    "G1_baseline_blend": 0.16609664530534368,
+    "G2_jd_only": 0.17002304381943065,
+    "G3_yoe_only": 0.16284893400520756,
+    "G4_old_gbm_only": 0.16284893400520756
+  },
+  "jd_marginal_contribution": 0.00717410981422309,
+  "yoe_marginal_contribution": 0.0,
+  "best_ratio": {
+    "jd": 0.8,
+    "yoe": 0.19999999999999996,
+    "ndcg": 0.16609664530534368
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "experiment": "exp_f_retrain_v2",
+  "ndcg@10": 0.6919216112410792,
+  "comparison": {
+    "baseline_ndcg@10": 0.7473,
+    "new_ndcg@10": 0.6919216112410792,
+    "delta": -0.0554,
+    "verdict": "REGRESSION"
+  },
+  "stability": {
+    "seeds": {
+      "42": 0.6919216112410792,
+      "7": 0.6919216112410792,
+      "123": 0.6919216112410792
+    },
+    "spearman_42_7": 1.0,
+    "spearman_42_123": 1.0
+  },
+  "feature_importances": {
+    "skill_depth": 14,
+    "skill_breadth": 14,
+    "skill_recency": 4,
+    "skill_mastery_triangulation": 167,
+    "jd_skill_score": 211,
+    "tenure_stability": 65,
+    "activity_quality_composite": 244,
+    "trust_score": 16,
+    "logistics_fit_score": 76,
+    "product_vs_services": 86,
+    "implied_skill_score": 33,
+    "yoe_band_fit": 42
+  }
+}

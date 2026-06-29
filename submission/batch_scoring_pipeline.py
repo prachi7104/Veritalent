@@ -1,15 +1,20 @@
-import json
+# submission/batch_scoring_pipeline.py
+"""
+Batch Scoring Pipeline v2 — updated to use BlendScorer and pre-cached narratives.
+"""
+import argparse
 import csv
-import lightgbm as lgb
+import json
 import os
+import sys
 from pathlib import Path
 
 # Fix relative imports when running from the script directory
-import sys
 project_root = str(Path(__file__).parent.parent.absolute())
 if project_root not in sys.path:
     sys.path.append(project_root)
 
+from submission.blend_scorer import BlendScorer
 from ranking_lab.models.monotonic_constraints import TRAINING_FEATURES as FEATURE_COLS
 from explainability_lab.attribution.shap_explainer import SHAPExplainer
 from explainability_lab.attribution.feature_contribution_summary import get_top_k_contributions
@@ -18,73 +23,110 @@ from explainability_lab.narrative.fallback_narrative import generate_fallback_na
 from explainability_lab.narrative.consistency_validator import validate_consistency
 from explainability_lab.narrative.candidate_context import build_candidate_context
 
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="submission/submission.csv", help="Output CSV path")
+    parser.add_argument("--top-n", type=int, default=100, help="Number of top candidates to export")
+    args = parser.parse_args()
+
     print("Loading feature store...")
     feature_store = {}
     pool_jd_skill_sum = 0.0
-    with open('feature_lab/store/feature_store.jsonl', 'r') as f:
+    
+    # Load feature store dynamically, selecting the larger file
+    path_v2 = Path("feature_lab/store/feature_store_v2.jsonl")
+    path_full = Path("feature_lab/store/feature_store.jsonl")
+    store_path = path_full if (path_full.exists() and (not path_v2.exists() or path_full.stat().st_size > path_v2.stat().st_size)) else path_v2
+        
+    with open(store_path, "r", encoding="utf-8") as f:
         for line in f:
             row = json.loads(line)
             feature_store[row['candidate_id']] = row
-            pool_jd_skill_sum += float(row.get('jd_skill_score', 0))
+            pool_jd_skill_sum += float(row.get('jd_skill_score', 0) or 0)
             
-    print(f"Loaded {len(feature_store)} candidates from feature store.")
+    print(f"Loaded {len(feature_store)} candidates from {store_path}.")
     pool_jd_skill_mean = pool_jd_skill_sum / max(1, len(feature_store))
     
     print("Loading candidates...")
     candidates = {}
-    with open('dataset/[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl', 'r', encoding='utf-8') as f:
+    candidates_file = 'dataset/[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl'
+    with open(candidates_file, 'r', encoding='utf-8') as f:
         for line in f:
             row = json.loads(line)
             candidates[row['candidate_id']] = row
-            
-    print("Loading GBM model...")
-    model_path = "ranking_lab/models/gbm_lambdarank.txt"
-    model = lgb.Booster(model_file=model_path)
-    
-    print("Scoring candidates...")
-    scores = []
-    missing_from_feature_store = []
-    
-    for candidate_id, features in feature_store.items():
-        try:
-            feature_vector = [float(features.get(col, 0.0)) for col in FEATURE_COLS]
-            score = model.predict([feature_vector])[0]
-            scores.append((candidate_id, score))
-        except Exception as e:
-            missing_from_feature_store.append(candidate_id)
-            
+
+    print("Initializing BlendScorer...")
+    scorer = BlendScorer()
+
+    print("Scoring all candidates...")
+    candidate_ids = list(feature_store.keys())
+    scores_dict = scorer.score(candidate_ids, feature_store)
+
+    scores = [(cid, score) for cid, score in scores_dict.items()]
     print(f"Successfully scored {len(scores)} candidates.")
-    print(f"Failed to score {len(missing_from_feature_store)} candidates.")
     
-    if len(missing_from_feature_store) > 100:
-        print("ERROR: Too many candidates failed scoring. Aborting.")
-        sys.exit(1)
-        
-    print("Sorting candidates...")
+    print("Sorting candidates by blend score...")
     # Sort by score descending, then candidate_id ascending for tie-breaks
     scores.sort(key=lambda x: (-x[1], x[0]))
     
-    top_100 = scores[:100]
-    
+    top_n_candidates = scores[:args.top_n]
+
+    # Load pre-cached narratives if available
+    narratives_cache = {}
+    cache_path = Path("submission/narratives_cache.json")
+    if cache_path.exists():
+        with open(cache_path, "r", encoding="utf-8") as f:
+            narratives_cache = json.load(f)
+        print(f"Loaded {len(narratives_cache)} narratives from cache.")
+
     print("Initializing Explainer...")
-    explainer = SHAPExplainer(model_path=model_path)
+    explainer = SHAPExplainer(model_path="ranking_lab/models/gbm_lambdarank.txt")
     
-    print("Generating narratives and building submission rows...")
+    print("Preparing submission rows...")
     rows = []
-    os.makedirs("submission", exist_ok=True)
     
-    # Pre-calculate SHAP summaries sequentially (since tree explainer might not be thread safe)
-    candidate_data = []
-    for rank, (candidate_id, score) in enumerate(top_100, start=1):
+    for rank, (candidate_id, score) in enumerate(top_n_candidates, start=1):
         features = feature_store[candidate_id]
         
+        # Check if rank is cached
+        reasoning = None
+        if narratives_cache:
+            # Try rank string first
+            reasoning_entry = narratives_cache.get(str(rank))
+            if reasoning_entry:
+                reasoning = reasoning_entry.get("narrative")
+            else:
+                # Try candidate_id key
+                reasoning_entry = narratives_cache.get(candidate_id)
+                if reasoning_entry:
+                    reasoning = reasoning_entry.get("narrative")
+
+        if reasoning:
+            rows.append({
+                "candidate_id": candidate_id,
+                "rank": rank,
+                "score": round(score, 6),
+                "reasoning": reasoning
+            })
+            continue
+
+        # Fallback: compute and generate narrative if not in cache
+        print(f"Cache miss for rank {rank} ({candidate_id}). Generating...")
         candidate_dict = {}
         for col in FEATURE_COLS:
-            candidate_dict[col] = float(features.get(col, 0.0))
+            candidate_dict[col] = float(features.get(col, 0.0) or 0.0)
             
         explainer_output = explainer.explain_candidate(candidate_dict)
-        shap_summary = get_top_k_contributions(explainer_output, k=5)
+        
+        # Format contributions list
+        shap_summary = []
+        for f_name, details in explainer_output["contributions"].items():
+            shap_summary.append({
+                "feature": f_name,
+                "raw_value": details["raw_value"],
+                "shap_value": details["shap_value"]
+            })
         
         context = build_candidate_context(
             candidate=candidates.get(candidate_id, {}),
@@ -93,24 +135,6 @@ def main():
             rank=rank,
             pool_jd_skill_mean=pool_jd_skill_mean
         )
-        
-        candidate_data.append({
-            "candidate_id": candidate_id,
-            "rank": rank,
-            "score": score,
-            "shap_summary": shap_summary,
-            "context": context
-        })
-        
-    # Generate narratives concurrently
-    import concurrent.futures
-
-    def process_candidate(data):
-        rank = data["rank"]
-        candidate_id = data["candidate_id"]
-        shap_summary = data["shap_summary"]
-        context = data["context"]
-        score = data["score"]
         
         try:
             reasoning = generate_narrative(
@@ -123,37 +147,25 @@ def main():
         except Exception as e:
             print(f"Exception for rank {rank}: {e}")
             reasoning = generate_fallback_narrative(context)
-            
-        return {
+
+        rows.append({
             "candidate_id": candidate_id,
             "rank": rank,
             "score": round(score, 6),
             "reasoning": reasoning
-        }
+        })
 
-    print("Submitting to ThreadPoolExecutor...")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-        future_to_data = {executor.submit(process_candidate, d): d for d in candidate_data}
-        for i, future in enumerate(concurrent.futures.as_completed(future_to_data), start=1):
-            try:
-                res = future.result()
-            except Exception as e:
-                print(f"Future raised exception: {e}")
-                continue
-            rows.append(res)
-            if i % 10 == 0:
-                print(f"Generated {i}/100 narratives...")
-                
-    # Re-sort rows by rank since they complete out of order
-    rows.sort(key=lambda x: x["rank"])
-            
-    print("Writing submission.csv...")
-    with open('submission/submission.csv', 'w', newline='', encoding='utf-8') as f:
+    # Ensure output directory exists
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    
+    print(f"Writing {args.output}...")
+    with open(args.output, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=["candidate_id", "rank", "score", "reasoning"])
         writer.writeheader()
         writer.writerows(rows)
         
     print("Pipeline complete!")
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,24 @@
+{
+  "total_candidates": 100,
+  "score_mean": 2.7653,
+  "score_std": 0.4062,
+  "score_min": 2.1627,
+  "score_max": 3.8672,
+  "n_tied_scores": 11,
+  "reasoning_length_mean": 536.0,
+  "reasoning_length_min": 377,
+  "feature_mention_counts": {
+    "skill_mastery_triangulation": 100,
+    "skill_depth": 100,
+    "logistics_fit_score": 94,
+    "activity_quality_composite": 86,
+    "skill_breadth": 45,
+    "implied_skill_score": 43,
+    "trust_score": 23,
+    "tenure_stability": 9,
+    "skill_recency": 0,
+    "product_vs_services": 0
+  },
+  "dominant_feature": "skill_mastery_triangulation",
+  "dominant_feature_rate": 1.0
+}

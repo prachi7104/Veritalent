@@ -35,8 +35,6 @@ def check_skill_density(candidate: dict) -> dict:
     # Also check profile just in case
     profile_yoe = candidate.get("profile", {}).get("years_of_experience", 0.0)
     
-    years_experience = max(1.0, max(yoe, profile_yoe))
-        
     skills = candidate.get("skills", [])
     
     deep_ir_count = 0
@@ -51,7 +49,11 @@ def check_skill_density(candidate: dict) -> dict:
             
     total_claimed = deep_ir_count + buzzword_count
     
-    density_score = min(1.0, total_claimed / (years_experience * SKILL_DENSITY_THRESHOLD))
+    raw_yoe = max(yoe, profile_yoe)
+    if raw_yoe <= 0.0:
+        density_score = 1.0 if total_claimed > 0 else 0.0
+    else:
+        density_score = min(1.0, total_claimed / (raw_yoe * SKILL_DENSITY_THRESHOLD))
     
     return {
         "keyword_stuffing_density": float(density_score),

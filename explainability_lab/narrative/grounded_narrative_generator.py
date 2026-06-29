@@ -1,27 +1,51 @@
 import os
 import json
+import time
 import openai
 from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Setup client as requested
+# Setup Gemini client (google-genai)
+gemini_client = None
+if os.environ.get("GEMINI_API_KEY"):
+    try:
+        from google import genai
+        gemini_client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+    except ImportError:
+        pass
+
+# Setup Groq client
+groq_client = None
 if os.environ.get("GROQ_API_KEY"):
-    pythonclient = openai.OpenAI(
+    groq_client = openai.OpenAI(
         base_url="https://api.groq.com/openai/v1",
         api_key=os.environ.get("GROQ_API_KEY"),
-        max_retries=2
+        max_retries=0
     )
-    DEFAULT_MODEL = "llama-3.3-70b-versatile"
-else:
-    pythonclient = openai.OpenAI(
+
+# Setup Cerebras client
+cerebras_client = None
+if os.environ.get("CEREBRAS_API_KEY"):
+    cerebras_client = openai.OpenAI(
         base_url="https://api.cerebras.ai/v1",
         api_key=os.environ.get("CEREBRAS_API_KEY"),
         max_retries=0
     )
+
+# Legacy fallback client definition
+if gemini_client:
+    pythonclient = gemini_client
+    DEFAULT_MODEL = "gemini-2.5-flash"
+elif groq_client:
+    pythonclient = groq_client
+    DEFAULT_MODEL = "llama-3.3-70b-versatile"
+else:
+    pythonclient = cerebras_client
     DEFAULT_MODEL = "gpt-oss-120b"
 
+groq_failed = False
 CACHE_DIR = Path("explainability_lab/narratives_cache")
 
 SYSTEM_PROMPT = """You are a senior technical recruiter writing candidate evaluation notes.
@@ -43,29 +67,52 @@ Rules:
 7. Do not start with "The candidate" — vary your openings.
 """
 
-USER_PROMPT_TEMPLATE = """
+USER_PROMPT_TOP50 = """
+Role: Senior AI/ML Engineer — Search & Retrieval (5–9 YOE, Pune/Noida, product-first)
+Rank: #{rank} of 100 (shortlisted candidate)
+
+Candidate snapshot:
+- Current title: {current_title}
+- Years of experience: {yoe} ({yoe_band_label_text})
+- Current company: {current_company} ({company_type})
+- Location: {location}  |  Notice: {notice_period}
+- JD-relevant skills: {jd_skills}
+- JD alignment signal: {jd_skill_label}
+- Trust status: {trust_label}
+
+Write a 80–120 word recruiter note explaining this ranking.
+Open with who this person is and what makes them stand out.
+Mention their specific skills and how they match the Search & Retrieval JD.
+Reference their experience level and location fit.
+End with one honest limitation.
+Do not use bullet points. Vary your opening.
+"""
+
+USER_PROMPT_LOWER50 = """
 Role: Senior AI/ML Engineer — Search & Retrieval (5–9 YOE, Pune/Noida, product-first)
 Rank: #{rank} of 100
 
 Candidate snapshot:
 - Current title: {current_title}
-- Years of experience: {yoe}
+- Years of experience: {yoe} ({yoe_band_label_text})
 - Current company: {current_company} ({company_type})
-- Location: {location}
-- Notice period: {notice_period}
-- Key skills (JD-relevant): {jd_skills}
-- Top SHAP drivers: {shap_summary}
-- JD skill score: {jd_skill_score:.1f} (pool mean: {pool_jd_skill_mean:.1f})
-- Experience band: {yoe_band_label}
+- Location: {location}  |  Notice: {notice_period}
+- JD-relevant skills: {jd_skills}
+- JD alignment signal: {jd_skill_label}
+- Ranking signals: {shap_summary}
 - Trust status: {trust_label}
 
-Write a 80–120 word recruiter note explaining this ranking.
-Start with who this person is. Be specific. Be honest. No bullet points.
+Write a 80–120 word recruiter note explaining why this candidate ranked here.
+Be specific about their fit and gaps relative to the JD.
+Do not use bullet points. Do not start with 'The candidate'.
 """
 
-def generate_narrative(candidate_id: str, context: dict, mode: str = "precompute", model: str = None) -> str:
-    if model is None:
-        model = DEFAULT_MODEL
+
+def get_prompt_template(rank: int) -> str:
+    return USER_PROMPT_TOP50 if rank <= 50 else USER_PROMPT_LOWER50
+
+
+def generate_narrative(candidate_id: str, context: dict, mode: str = "precompute", model: str = None, prompt_template: str = None) -> str:
     """
     Generates a SHAP-grounded narrative using two modes:
       - mode='precompute': Calls the LLM and caches the result.
@@ -87,26 +134,90 @@ def generate_narrative(candidate_id: str, context: dict, mode: str = "precompute
         with open(cache_path, "r", encoding="utf-8") as f:
             return json.load(f)["narrative"]
             
-    prompt = USER_PROMPT_TEMPLATE.format(**context)
+    if prompt_template is None:
+        prompt_template = get_prompt_template(context.get("rank", 100))
+        
+    prompt = prompt_template.format(**context)
     
-    response = pythonclient.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.2,
-        timeout=5.0
-    )
-    
-    narrative = response.choices[0].message.content.strip()
-    
+    # Choose clients/models to try in order
+    global groq_failed
+    clients_and_models = []
+    if gemini_client:
+        clients_and_models.append(("gemini", gemini_client, "gemini-2.5-flash"))
+    if groq_client and not groq_failed:
+        clients_and_models.append(("groq", groq_client, "llama-3.3-70b-versatile"))
+    if cerebras_client:
+        clients_and_models.append(("cerebras", cerebras_client, "gpt-oss-120b"))
+
+    if not clients_and_models:
+        if model is None:
+            model = DEFAULT_MODEL
+        if hasattr(pythonclient, "models"):
+            clients_and_models = [("gemini", pythonclient, model)]
+        else:
+            clients_and_models = [("openai_style", pythonclient, model)]
+
+    if model is not None:
+        if "gemini" in model.lower() and gemini_client:
+            clients_and_models = [("gemini", gemini_client, model)] + [(t, c, m) for t, c, m in clients_and_models if m != model]
+        elif "llama" in model.lower() and groq_client and not groq_failed:
+            clients_and_models = [("groq", groq_client, model)] + [(t, c, m) for t, c, m in clients_and_models if m != model]
+        elif "gpt" in model.lower() and cerebras_client:
+            clients_and_models = [("cerebras", cerebras_client, model)] + [(t, c, m) for t, c, m in clients_and_models if m != model]
+
+    # Retry loop for handling rate limit windows across all clients
+    narrative = None
+    last_err = None
+    for attempt in range(5):
+        for client_type, client, model_name in clients_and_models:
+            try:
+                if client_type == "gemini":
+                    from google.genai import types
+                    response = client.models.generate_content(
+                        model=model_name,
+                        contents=prompt,
+                        config=types.GenerateContentConfig(
+                            system_instruction=SYSTEM_PROMPT,
+                            temperature=0.2,
+                        )
+                    )
+                    narrative = response.text.strip()
+                else:
+                    response = client.chat.completions.create(
+                        model=model_name,
+                        messages=[
+                            {"role": "system", "content": SYSTEM_PROMPT},
+                            {"role": "user", "content": prompt}
+                        ],
+                        temperature=0.2,
+                        timeout=5.0
+                    )
+                    narrative = response.choices[0].message.content.strip()
+                break
+            except Exception as e:
+                if client_type == "groq":
+                    print(f"Groq failed: {e}. Disabling Groq.")
+                    groq_failed = True
+                else:
+                    print(f"{client_type} failed: {e}.")
+                last_err = e
+        
+        if narrative is not None:
+            break
+            
+        print(f"All clients rate limited or failed on attempt {attempt+1}/5. Sleeping 30s...")
+        time.sleep(30.0)
+
+    if narrative is None:
+        raise last_err or Exception("All LLM clients failed to generate narrative after retries")
+        
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump({"candidate_id": candidate_id, "narrative": narrative}, f)
         
     return narrative
 
-def generate_ungrounded_narrative(candidate_id: str, candidate_data: dict, model: str = "gpt-oss-120b") -> str:
+
+def generate_ungrounded_narrative(candidate_id: str, candidate_data: dict, model: str = "gemini-2.5-flash") -> str:
     """
     Generates an ungrounded baseline narrative for comparison, given raw candidate data but NO SHAP values.
     """
@@ -118,9 +229,17 @@ Skills: {json.dumps(candidate_data.get('skills', []))}
 
 Draft a 2-4 sentence explanation of why they rank where they do.
 """
-    response = pythonclient.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.7
-    )
-    return response.choices[0].message.content.strip()
+    if gemini_client:
+        response = gemini_client.models.generate_content(
+            model=model,
+            contents=prompt,
+        )
+        return response.text.strip()
+    else:
+        client = cerebras_client or pythonclient
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
+        )
+        return response.choices[0].message.content.strip()

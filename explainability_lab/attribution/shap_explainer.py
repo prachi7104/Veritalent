@@ -14,7 +14,8 @@ class SHAPExplainer:
         """
         self.booster = lgb.Booster(model_file=model_path)
         self.explainer = shap.TreeExplainer(self.booster)
-        self.features = TRAINING_FEATURES
+        num_feats = self.booster.num_feature()
+        self.features = TRAINING_FEATURES[:num_feats]
 
     def explain_candidate(self, candidate: dict) -> dict:
         """

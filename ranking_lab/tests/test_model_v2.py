@@ -15,11 +15,24 @@ def test_jd_skill_score_has_positive_constraint():
     assert m["trust_score"] == -1
 
 
-def test_v2_model_file_exists_after_gate_pass():
-    p = Path("ranking_lab/models/gbm_lambdarank_v2.txt")
-    if not p.exists():
-        pytest.skip("v2 model not trained yet")
-    assert p.stat().st_size > 1000
+def test_blend_config_exists_and_valid():
+    """
+    Final architecture uses blend_config.json not gbm_lambdarank_v2.txt.
+    Retrain gate failed at n=250 labeled samples — blend is the correct approach.
+    Locks in the evidence-backed config values from Fix-3 alpha sweep + ablation.
+    """
+    from pathlib import Path
+    import json
+    p = Path("ranking_lab/models/blend_config.json")
+    assert p.exists(), "blend_config.json missing"
+    with open(p) as f:
+        cfg = json.load(f)
+    # Alpha = 0.90: proven optimal in alpha sweep (0.85 regresses NDCG)
+    assert abs(cfg["alpha"] - 0.90) < 0.001, f"alpha={cfg['alpha']} — expected 0.90"
+    # jd_skill_score = 1.0: ablation G2 vs G4 = +0.0072 marginal contribution
+    assert cfg["new_features"]["jd_skill_score"] == 1.0
+    # yoe_band_fit = 0.0: ablation G3 vs G4 = 0.0000, removed
+    assert cfg["new_features"]["yoe_band_fit"] == 0.0
 
 
 def test_netflix_outranks_aganitha_on_jd_skill_score():

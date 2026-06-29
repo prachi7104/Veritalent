@@ -1,0 +1,92 @@
+{
+  "skill_depth": {
+    "count": 100000,
+    "mean": 7.8884,
+    "std": 20.6703,
+    "min": 0.0,
+    "max": 192.0,
+    "zero_rate": 0.8314,
+    "nonzero_count": 16860
+  },
+  "skill_breadth": {
+    "count": 100000,
+    "mean": 0.3347,
+    "std": 0.1461,
+    "min": 0.25,
+    "max": 1.0,
+    "zero_rate": 0.0,
+    "nonzero_count": 100000
+  },
+  "skill_recency": {
+    "count": 100000,
+    "mean": 0.0987,
+    "std": 0.2875,
+    "min": 0.0,
+    "max": 1.0,
+    "zero_rate": 0.8868,
+    "nonzero_count": 11324
+  },
+  "skill_mastery_triangulation": {
+    "count": 100000,
+    "mean": 50.5413,
+    "std": 23.8239,
+    "min": 1.5,
+    "max": 222.0,
+    "zero_rate": 0.0,
+    "nonzero_count": 100000
+  },
+  "tenure_stability": {
+    "count": 100000,
+    "mean": 28.3611,
+    "std": 7.8196,
+    "min": 8.0,
+    "max": 98.0,
+    "zero_rate": 0.0,
+    "nonzero_count": 100000
+  },
+  "activity_quality_composite": {
+    "count": 100000,
+    "mean": 0.4338,
+    "std": 0.1283,
+    "min": 0.1018,
+    "max": 0.8985,
+    "zero_rate": 0.0,
+    "nonzero_count": 100000
+  },
+  "trust_score": {
+    "count": 100000,
+    "mean": 0.0823,
+    "std": 0.0603,
+    "min": 0.0,
+    "max": 0.4948,
+    "zero_rate": 0.0888,
+    "nonzero_count": 91123
+  },
+  "logistics_fit_score": {
+    "count": 100000,
+    "mean": 0.5591,
+    "std": 0.1442,
+    "min": 0.2728,
+    "max": 1.0,
+    "zero_rate": 0.0,
+    "nonzero_count": 100000
+  },
+  "product_vs_services": {
+    "count": 100000,
+    "mean": 0.8378,
+    "std": 0.2739,
+    "min": 0.0,
+    "max": 1.0,
+    "zero_rate": 0.0899,
+    "nonzero_count": 91009
+  },
+  "implied_skill_score": {
+    "count": 100000,
+    "mean": 0.0037,
+    "std": 0.0385,
+    "min": 0.0,
+    "max": 0.6,
+    "zero_rate": 0.9893,
+    "nonzero_count": 1074
+  }
+}

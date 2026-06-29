@@ -87,3 +87,34 @@ def test_monotonic_directions():
 if __name__ == "__main__":
     test_monotonic_directions()
     print("\nAll monotonic constraint tests passed successfully.")
+
+
+def test_blend_ablation_report_exists():
+    from pathlib import Path
+    import json
+    reports = sorted(Path("reports_archive").glob("exp_g_blend_ablation_*.json"))
+    if not reports:
+        import pytest
+        pytest.skip("Run exp_g_blend_ablation.py first")
+    with open(reports[-1]) as f:
+        r = json.load(f)
+    assert "jd_marginal_contribution" in r
+    assert "yoe_marginal_contribution" in r
+    # Both should be computed (positive or not)
+    assert isinstance(r["jd_marginal_contribution"],  float)
+    assert isinstance(r["yoe_marginal_contribution"], float)
+
+
+def test_no_feature_dominates_old_gbm():
+    """No single feature in the old GBM should have > 50% of importance."""
+    from ranking_lab.models.gbm_lambdarank import GBMLambdaRankModel
+    from ranking_lab.models.monotonic_constraints import TRAINING_FEATURES
+    from pathlib import Path
+    model = GBMLambdaRankModel()
+    model.load("ranking_lab/models/gbm_lambdarank.txt")
+    imps = model.model.feature_importance()
+    total = sum(imps)
+    top_imp = max(imps)
+    assert top_imp / total < 0.50, (
+        f"Top feature has {top_imp/total:.1%} of GBM importance — too dominant"
+    )
