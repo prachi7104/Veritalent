@@ -8,6 +8,40 @@ reshape the ranking themselves instead of just trusting a black box.
 
 ---
 
+## Submission
+
+| Item | Details |
+|------|---------|
+| **Ranked output** | `submission/submission_v2.csv` — 100 candidates, passes `validate_submission.py` |
+| **Ranking model** | LightGBM LambdaRank · NDCG@10 = **0.7473** (GBM) → **0.7482** (BlendScorer) |
+| **Scoring formula** | `0.90 × norm(GBM_score) + 0.10 × norm(jd_skill_score)` (yoe_band_fit removed after ablation proved zero marginal contribution) |
+| **Explainability** | SHAP TreeExplainer + Cerebras `gpt-oss-120b` grounded narratives · 0% hallucination (Lab 07) |
+| **Adversarial robustness** | Keyword stuffer: −3.26 vs. legit: −0.32 · Consistent fraud & activity faker: all PASS |
+| **Retrieval** | 7-experiment shootout · `bge-small-en-v1.5` dense index (live path, ~78ms) |
+| **Validation** | `Submission is valid.` |
+
+To regenerate the submission CSV from scratch:
+
+```bash
+python submission/batch_scoring_pipeline.py --output submission/submission_v2.csv --top-n 100
+python dataset/"[PUB] India_runs_data_and_ai_challenge"/India_runs_data_and_ai_challenge/validate_submission.py \
+  --submission submission/submission_v2.csv
+```
+
+---
+
+## Lab results summary
+
+| Lab | Key finding |
+|-----|-------------|
+| Retrieval Lab | Dense-only (`bge-small-en-v1.5`) wins live path at ~78ms; Skill Graph Recall best offline (NDCG@50=0.4528); pooling-bias fix revealed 65 valid candidates invisible to BM25 |
+| Ranking Lab | LambdaRank (+0.1899 NDCG@10 vs. linear baseline); cross-encoder ensemble tested but adds ~11s latency — excluded from live path |
+| Feature Lab | `skill_mastery_triangulation` dominates (split gain 209); `industry_relevance` excluded (ablation: +0.0168 NDCG without it); `career_velocity` display-only (r=0.75 with `tenure_stability`) |
+| Trust Lab | ~70/~80 documented honeypots caught; keyword stuffer PASS on current model; sophisticated internally-consistent fraud is a disclosed limitation |
+| Explainability Lab | 0% hallucination rate on LLM-grounded narratives; SHAP coverage 100%; fallback templates factually verified |
+
+---
+
 ## Table of contents
 
 - [The problem](#the-problem)
@@ -135,10 +169,15 @@ against the original GBM order.
 
 ## Tech stack
 
-**Backend:** FastAPI, LightGBM (LambdaRank), SHAP, `sentence-transformers`
-(bge-small-en-v1.5), `cachetools` (TTLCache for sessions and JD decomposition
-caching), an LLM provider (Cerebras or Groq) for JD decomposition with a
-fully offline keyword-extraction fallback.
+**Backend:** FastAPI, LightGBM (LambdaRank + BlendScorer post-processing), SHAP
+(TreeExplainer for feature attribution), `sentence-transformers` (bge-small-en-v1.5
+dense index), `cachetools` (TTLCache for sessions and SHA-256-keyed JD decomposition
+cache), Cerebras `gpt-oss-120b` / Groq for JD decomposition and SHAP-grounded
+narrative generation — both with a fully offline keyword-extraction / template fallback.
+
+**Scoring formula (batch submission path):**
+`final_score = 0.90 × norm(GBM_score) + 0.10 × norm(jd_skill_score)` — yoe_band_fit
+removed after ablation confirmed zero marginal NDCG contribution.
 
 **Frontend:** Next.js (App Router), TypeScript, vanilla CSS (no Tailwind —
 styling runs entirely through a small set of CSS custom properties in
