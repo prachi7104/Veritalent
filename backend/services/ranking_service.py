@@ -10,14 +10,17 @@ logger = logging.getLogger(__name__)
 
 MODEL_PATH = "ranking_lab/models/gbm_lambdarank.txt"
 _booster: lgb.Booster | None = None
+_active_features = TRAINING_FEATURES
 _linear_fallback = LinearBaselineModel()
 
 def load():
-    global _booster
+    global _booster, _active_features
     logger.info(f"Loading GBM model from {MODEL_PATH}...")
     try:
         if os.path.exists(MODEL_PATH):
             _booster = lgb.Booster(model_file=MODEL_PATH)
+            num_feats = _booster.num_feature()
+            _active_features = TRAINING_FEATURES[:num_feats]
             logger.info("GBM booster loaded.")
         else:
             logger.error(f"GBM model file not found at {MODEL_PATH}")
@@ -36,10 +39,10 @@ def score_batch(feature_dicts: list[dict]) -> list[float]:
     X = []
     for candidate_feat in feature_dicts:
         row = []
-        for feature_name in TRAINING_FEATURES:
+        for feature_name in _active_features:
             row.append(float(candidate_feat.get(feature_name, 0.0)))
         
-        assert len(row) == len(TRAINING_FEATURES), f"Feature count mismatch: {len(row)} vs {len(TRAINING_FEATURES)}"
+        assert len(row) == len(_active_features), f"Feature count mismatch: {len(row)} vs {len(_active_features)}"
         X.append(row)
         
     X_array = np.array(X)
