@@ -20,6 +20,8 @@ reshape the ranking themselves instead of just trusting a black box.
 | **Retrieval** | 7-experiment shootout · `bge-small-en-v1.5` dense index (live path, ~78ms) |
 | **Validation** | `Submission is valid.` |
 
+For full ablation tests, validation details, and dataset statistics, see the [EVALUATION_SUMMARY.md](file:///c:/projects/Veritalent/EVALUATION_SUMMARY.md).
+
 To regenerate the submission CSV from scratch:
 
 ```bash
@@ -255,6 +257,22 @@ any feature:
    ordering.
 5. Counterfactual skill-gap estimates are explicitly flagged as
    approximations, never as model predictions.
+
+## Trust & Fairness Evidence
+
+The system's trust scoring has been rigorously audited for both detection capability and potential bias. For full details, see the [trust_score_audit_report.md](file:///c:/projects/Veritalent/trust_lab/reports/trust_score_audit_report.md).
+For a comprehensive breakdown of ranking quality and ablation studies, refer to our [EVALUATION_SUMMARY.md](file:///c:/projects/Veritalent/EVALUATION_SUMMARY.md).
+
+**Detection Performance:**
+- **Honeypot detection rate:** 70/80 known honeypots were caught.
+- **False positives:** 9 candidates flagged (score >= 0.4). Characterization: These aren't malicious bots, but legitimate "over-claimers" who lack identity verification or scored poorly on assessments despite claiming advanced proficiency.
+- **Explicit limitation statement:** "The current trust score catches sloppy/inconsistent fraud; it **does NOT reliably catch sophisticated, internally-consistent fraud**."
+
+**Bias Analysis:**
+There is no statistically significant correlation between the trust flags and nonlinear career indicators.
+- **Correlation with Career Gaps:** 0.000
+- **Correlation with Industry Switches:** -0.007
+- **Correlation with Technical Degree:** -0.005
 
 ## Setup
 

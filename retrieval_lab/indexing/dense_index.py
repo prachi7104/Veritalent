@@ -13,7 +13,7 @@ class DenseIndex:
 
     def _extract_text(self, candidate: Dict[str, Any]) -> str:
         """
-        Extract text for Dense Index: summary + headline
+        Extract text for Dense Index: summary + headline + skills
         """
         parts = []
         
@@ -27,8 +27,13 @@ class DenseIndex:
         if headline:
             parts.append(headline)
             
+        # skills
+        skills = [s['name'] for s in candidate.get('skills', []) if isinstance(s, dict) and 'name' in s]
+        if skills:
+            parts.append("Skills: " + ", ".join(skills))
+            
         text = " ".join(parts) if parts else ""
-        return text
+        return text[:1000]
 
     def build(self, candidates: List[Dict[str, Any]], batch_size: int = 256):
         texts = []
@@ -55,8 +60,11 @@ class DenseIndex:
         scored_candidates = [(self.corpus_ids[i], float(scores[i])) for i in range(len(self.corpus_ids))]
         scored_candidates.sort(key=lambda x: x[1], reverse=True)
         
+        if top_k is not None:
+            scored_candidates = scored_candidates[:top_k]
+            
         results = []
-        for cand_id, score in scored_candidates[:top_k]:
+        for cand_id, score in scored_candidates:
             results.append({"candidate_id": cand_id, "score": score})
             
         return results
